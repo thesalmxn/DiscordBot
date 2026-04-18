@@ -1,0 +1,79 @@
+{
+  "1": {
+    "desc": "work on the task",
+    "progress": 0,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": null
+  },
+  "2": {
+    "desc": "make tests in n8n",
+    "progress": 0,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": "Javier"
+  },
+  "4": {
+    "desc": "communicate with the client",
+    "progress": 40,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": "Javier"
+  },
+  "5": {
+    "desc": "chat with the integration team",
+    "progress": 100,
+    "status": "Completed",
+    "priority": "Normal",
+    "assigned": null
+  },
+  "6": {
+    "desc": "Have to describe the context to the chat model",
+    "progress": 100,
+    "status": "Completed",
+    "priority": "Normal",
+    "assigned": "Prag"
+  },
+  "7": {
+    "desc": "Evaluate the spillitting code",
+    "progress": 0,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": null
+  },
+  "8": {
+    "desc": "Wrap things up",
+    "progress": 0,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": null
+  },
+  "9": {
+    "desc": "do a final check",
+    "progress": 40,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": "Raksh"
+  },
+  "10": {
+    "desc": "make things work",
+    "progress": 100,
+    "status": "Completed",
+    "priority": "Critical",
+    "assigned": null
+  },
+  "11": {
+    "desc": "Check how things are going",
+    "progress": 0,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": null
+  },
+  "12": {
+    "desc": "Check the final code",
+    "progress": 0,
+    "status": "Not started",
+    "priority": "Normal",
+    "assigned": null
+  }
+}

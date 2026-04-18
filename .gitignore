@@ -1,0 +1,10 @@
+# Environment variables (secrets)
+.env
+env_DimDiscord
+
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
