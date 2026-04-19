@@ -46,7 +46,7 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 
 ```
 .
-├── bottrellomirodiscord.py          # Main bot with full features (streaming, tasks, workflows)
+├── bot.py          # Main bot with full features (streaming, tasks, workflows)
 ├── streaming_monitor.py             # Standalone streaming monitor module
 ├── workflow_manager.py              # Standalone workflow manager and Miro integration
 ├── requirements.txt                 # Python dependencies
@@ -117,7 +117,7 @@ TRELLO_TOKEN=your_trello_token
 
 **Locally:**
 ```bash
-python bottrellomirodiscord.py
+python bot.py
 ```
 
 **With Docker:**
@@ -248,7 +248,7 @@ The Docker setup includes:
 
 ## Modu bot with Trello integration capabilities for board management and synchronization.
 
-### bottrellomirodiscord.py ⭐ **Main Implementation**
+### bot.py ⭐ **Main Implementation**
 Full-featured bot combining:
 - Streaming monitoring
 - Task management
