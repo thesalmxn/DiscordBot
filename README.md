@@ -46,15 +46,13 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 
 ```
 .
-├── bot.py                           # Main simple bot entry point
-├── bottrello.py                     # Trello integration bot
 ├── bottrellomirodiscord.py          # Main bot with full features (streaming, tasks, workflows)
 ├── streaming_monitor.py             # Standalone streaming monitor module
 ├── workflow_manager.py              # Standalone workflow manager and Miro integration
 ├── requirements.txt                 # Python dependencies
 ├── Dockerfile                       # Docker container setup
 ├── docker-compose.yml              # Docker compose configuration
-├── env_DimDiscord                  # Environment variables template
+├── README.md                        # This file
 └── data/
     ├── checkins.csv                 # Check-in response logs
     ├── miro_map.json               # Miro board to Discord mapping
@@ -84,34 +82,36 @@ cd DiscordBot
 pip install -r requirements.txt
 ```
 
-### Step 3: Configure Environment Variables
-Create `.env` file in the project root with the following variables:
+### Step 3: Create Environment Variables File
+Create a `.env` file in the project root. For reference, copy from `env_DimDiscord` template or use the variables below:
 
 ```env
-# Discord Bot
+# Discord Bot (Required)
 DISCORD_TOKEN=your_discord_bot_token_here
 
-# Data Directory
+# Data Directory (Optional)
 DATA_DIR=/app/data          # For Docker: /app/data, local: ./data
 
-# Timezone (optional)
+# Timezone (Optional)
 TIMEZONE=Asia/Nicosia       # Adjust to your timezone
 
-# Streaming Logs (optional)
+# Streaming Logs (Optional)
 STREAMING_LOG_CHANNEL=streaming-logs
 
-# Ollama AI Integration (optional)
+# Ollama AI Integration (Optional)
 OLLAMA_URL=http://192.168.10.7:11434/api/generate
 OLLAMA_MODEL=llama3
 
-# Miro Integration (optional)
+# Miro Integration (Optional)
 MIRO_ACCESS_TOKEN=your_miro_token
 MIRO_BOARD_ID=your_board_id
 
-# Trello Integration (optional)
+# Trello Integration (Optional)
 TRELLO_API_KEY=your_trello_key
 TRELLO_TOKEN=your_trello_token
 ```
+
+**Note:** Never commit the `.env` file to version control. Add it to `.gitignore` if not already present.
 
 ### Step 4: Run the Bot
 
@@ -246,13 +246,7 @@ The Docker setup includes:
 - Environment variable support
 - Unbuffered output for real-time logging
 
-## Module Overview
-
-### bot.py
-Simple standalone Discord bot entry point with basic functionality and event handling.
-
-### bottrello.py
-Discord bot with Trello integration capabilities for board management and synchronization.
+## Modu bot with Trello integration capabilities for board management and synchronization.
 
 ### bottrellomirodiscord.py ⭐ **Main Implementation**
 Full-featured bot combining:
