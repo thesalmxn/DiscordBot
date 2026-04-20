@@ -143,7 +143,10 @@ def _validate_steps(steps: list) -> list:
     - Last step is always 'end'
     - All branch target_index values are within bounds
     """
-    if not steps:
+    if not steps or not isinstance(steps, list):
+        return []
+    
+    if len(steps) == 0:
         return steps
 
     steps[0]["type"] = "start"
@@ -152,6 +155,13 @@ def _validate_steps(steps: list) -> list:
     for step in steps:
         for branch in step.get("branches", []):
             idx = branch.get("target_index", 0)
+            try:
+                idx = int(idx)
+                branch["target_index"] = idx
+            except (ValueError, TypeError):
+                idx = len(steps) - 1
+                branch["target_index"] = idx
+            
             if idx < 0 or idx >= len(steps):
                 branch["target_index"] = len(steps) - 1
 
@@ -162,6 +172,33 @@ def _validate_steps(steps: list) -> list:
 #  Miro: Draw & Delete
 # ============================================================
 
+async def _miro_create_board(title: str) -> str:
+    """
+    Create a new Miro board for the workflow.
+    Returns the new board ID.
+    """
+    if not _miro_enabled():
+        return None
+    
+    headers = _miro_headers()
+    board_payload = {
+        "name": f"Workflow: {title}",
+        "description": f"AI-generated workflow diagram for: {title}"
+    }
+    
+    async with aiohttp.ClientSession() as session:
+        async with session.post(
+            f"{MIRO_BASE}/boards", headers=headers, json=board_payload
+        ) as resp:
+            if resp.status in (200, 201):
+                result = await resp.json()
+                print(f"[WORKFLOW] New board created: {result['id']}")
+                return result["id"]
+            else:
+                txt = await resp.text()
+                print(f"[WORKFLOW] Board creation failed: {resp.status} {txt}")
+                return None
+
 async def _miro_create_diagram(
     title: str,
     steps: list[dict],
@@ -171,15 +208,20 @@ async def _miro_create_diagram(
 ) -> dict:
     """
     Draw shapes + connectors on Miro from a step list.
-    Returns { "shape_ids": [...], "connector_ids": [...] }
+    Returns { "shape_ids": [...], "connector_ids": [...], "board_id": "..." }
     """
     if not _miro_enabled():
         return {"error": "Miro not configured"}
 
+    # Create a new board for this workflow
+    board_id = await _miro_create_board(title)
+    if not board_id:
+        return {"error": "Failed to create Miro board"}
+
     shape_ids = []
     connector_ids = []
     headers = _miro_headers()
-    base = f"{MIRO_BASE}/boards/{MIRO_BOARD_ID}"
+    base = f"{MIRO_BASE}/boards/{board_id}"
 
     async with aiohttp.ClientSession() as session:
 
@@ -263,11 +305,11 @@ async def _miro_create_diagram(
                         conn_payload = {
                             "startItem": {
                                 "id":       shape_ids[i],
-                                "position": {"x": 0.5, "y": 1.0},
+                                "position": {"x": "50%", "y": "100%"},
                             },
                             "endItem": {
                                 "id":       shape_ids[target_idx],
-                                "position": {"x": 0.5, "y": 0.0},
+                                "position": {"x": "50%", "y": "0%"},
                             },
                             "captions": [
                                 {
@@ -302,11 +344,11 @@ async def _miro_create_diagram(
                     conn_payload = {
                         "startItem": {
                             "id":       shape_ids[i],
-                            "position": {"x": 0.5, "y": 1.0},
+                            "position": {"x": "50%", "y": "100%"},
                         },
                         "endItem": {
                             "id":       shape_ids[next_idx],
-                            "position": {"x": 0.5, "y": 0.0},
+                            "position": {"x": "50%", "y": "0%"},
                         },
                         "style": {
                             "strokeColor":  "#000000",
@@ -323,7 +365,7 @@ async def _miro_create_diagram(
                             result = await resp.json()
                             connector_ids.append(result["id"])
 
-    return {"shape_ids": shape_ids, "connector_ids": connector_ids}
+    return {"shape_ids": shape_ids, "connector_ids": connector_ids, "board_id": board_id}
 
 
 async def _miro_delete_diagram(wf: dict):
@@ -331,8 +373,12 @@ async def _miro_delete_diagram(wf: dict):
     if not _miro_enabled():
         return
 
+    board_id = wf.get("miro_board_id", MIRO_BOARD_ID)
+    if not board_id:
+        return
+
     headers = _miro_headers()
-    base = f"{MIRO_BASE}/boards/{MIRO_BOARD_ID}"
+    base = f"{MIRO_BASE}/boards/{board_id}"
 
     async with aiohttp.ClientSession() as session:
         # Connectors first (they reference shapes)
@@ -376,6 +422,7 @@ async def _miro_redraw(wf_id: str) -> dict:
 
     wf["miro_shape_ids"]    = result.get("shape_ids", [])
     wf["miro_connector_ids"] = result.get("connector_ids", [])
+    wf["miro_board_id"]      = result.get("board_id", "")
     save_workflows()
     return result
 
@@ -401,22 +448,31 @@ Rules:
 
     response = await _ask_ollama(f'Create a workflow for: "{description}"', system)
     if not response:
+        print("[WORKFLOW] No response from Ollama")
         return None
 
+    print(f"[WORKFLOW] Raw Ollama response: {response[:200]}...")
     response = _clean_json(response)
+    print(f"[WORKFLOW] Cleaned response: {response[:200]}...")
 
     try:
         steps = json.loads(response)
+        print(f"[WORKFLOW] Parsed JSON type: {type(steps)}")
         if isinstance(steps, list) and len(steps) >= 2:
             return _validate_steps(steps)
-    except json.JSONDecodeError:
+        else:
+            print(f"[WORKFLOW] Invalid steps format: {type(steps)}")
+    except json.JSONDecodeError as e:
+        print(f"[WORKFLOW] JSON decode error: {e}")
         match = re.search(r"\[.*\]", response, re.DOTALL)
         if match:
             try:
                 steps = json.loads(match.group())
+                print(f"[WORKFLOW] Regex extracted and parsed: {type(steps)}")
                 return _validate_steps(steps)
-            except Exception:
-                pass
+            except Exception as e2:
+                print(f"[WORKFLOW] Regex parse error: {e2}")
+    print("[WORKFLOW] Returning None")
     return None
 
 
@@ -568,6 +624,7 @@ async def cmd_workflow_create(
         "steps":               steps,
         "miro_shape_ids":      result.get("shape_ids", []),
         "miro_connector_ids":  result.get("connector_ids", []),
+        "miro_board_id":       result.get("board_id", ""),
         "x_origin":            x_origin,
         "y_origin":            0,
         "created_by":          author_name,
@@ -582,7 +639,8 @@ async def cmd_workflow_create(
     workflow_counter += 1
     save_workflows()
 
-    board_url = f"https://miro.com/app/board/{MIRO_BOARD_ID}/"
+    board_id = result.get("board_id", MIRO_BOARD_ID)
+    board_url = f"https://miro.com/app/board/{board_id}/"
     await send_fn(
         f"✅ Workflow **#{wf_id}** created: *{description[:50]}*\n"
         f"📊 {len(steps)} steps\n"

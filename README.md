@@ -20,6 +20,7 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 - Create visual workflow diagrams on Miro boards
 - Support for multiple diagram shapes: start, end, process, decision nodes
 - AI-powered workflow optimization using Ollama
+- **Each workflow gets its own dedicated Miro board** (no overlap)
 - Display workflow diagrams as embeds in Discord
 
 ### 🎯 Trello Integration
@@ -245,6 +246,63 @@ The Docker setup includes:
 - Volume mounts for persistent data
 - Environment variable support
 - Unbuffered output for real-time logging
+
+## Troubleshooting
+
+### Miro Integration Issues
+
+**Problem**: Workflows create successfully but Miro diagrams show shapes without connectors.
+
+**Solution**: Ensure Miro API position values use percentage strings ("50%") instead of numeric values (0.5). The connector position format was updated in workflow_manager.py to fix this API requirement.
+
+**Problem**: "Miro not configured" error when workflows should work.
+
+**Solution**: Ensure the `.env` file is loaded with `load_dotenv()` before accessing Miro environment variables. The workflow manager checks for `MIRO_ACCESS_TOKEN` and `MIRO_BOARD_ID` to enable Miro features.
+
+**Problem**: AI workflow generation fails with JSON parsing errors.
+
+**Solution**: The validation function now handles string indices from AI responses by converting them to integers. This prevents TypeError when comparing string indices to integer bounds.
+
+**Problem**: Workflows overlap on the same Miro board.
+
+**Solution**: Each workflow now creates its own dedicated Miro board automatically. No configuration changes needed - this is the new default behavior.
+
+### General Debugging
+
+To test individual components:
+
+```bash
+# Test workflow creation
+python -c "
+from dotenv import load_dotenv
+load_dotenv()
+import asyncio
+import workflow_manager
+
+async def test():
+    async def send(msg): print('MSG:', msg)
+    await workflow_manager.cmd_workflow_create(send, 'test workflow', 'user')
+
+asyncio.run(test())
+"
+
+# Check Miro configuration
+python -c "
+from dotenv import load_dotenv
+load_dotenv()
+import os
+print('MIRO_ACCESS_TOKEN:', bool(os.getenv('MIRO_ACCESS_TOKEN')))
+print('MIRO_BOARD_ID:', bool(os.getenv('MIRO_BOARD_ID')))
+"
+```
+
+### Updating Dependencies
+
+After installing new packages, update requirements.txt:
+
+```bash
+pip freeze > requirements.txt
+```
 
 ## Modu bot with Trello integration capabilities for board management and synchronization.
 
