@@ -111,5 +111,102 @@
         "snapshot": []
       }
     ]
+  },
+  "2": {
+    "title": "customer management in ecommerce platform",
+    "steps": [
+      {
+        "label": "Order Received",
+        "type": "start"
+      },
+      {
+        "label": "Verify Order Details",
+        "type": "process"
+      },
+      {
+        "label": "Ship Order",
+        "type": "process"
+      },
+      {
+        "label": "Package Damaged?",
+        "type": "decision",
+        "branches": [
+          {
+            "label": "Yes",
+            "target_index": 5
+          },
+          {
+            "label": "No",
+            "target_index": 6
+          }
+        ]
+      },
+      {
+        "label": "Request Replacement",
+        "type": "process"
+      },
+      {
+        "label": "Package Unacceptable?",
+        "type": "decision",
+        "branches": [
+          {
+            "label": "Yes",
+            "target_index": 8
+          },
+          {
+            "label": "No",
+            "target_index": 8
+          }
+        ]
+      },
+      {
+        "label": "Refund Requested",
+        "type": "process"
+      },
+      {
+        "label": "Cancel Refund",
+        "type": "process"
+      },
+      {
+        "label": "End of Process",
+        "type": "end"
+      }
+    ],
+    "miro_shape_ids": [
+      "3458764669012530027",
+      "3458764669012530034",
+      "3458764669012530036",
+      "3458764669012530039",
+      "3458764669012530043",
+      "3458764669012530045",
+      "3458764669012530052",
+      "3458764669012530055",
+      "3458764669012530064"
+    ],
+    "miro_connector_ids": [
+      "3458764669012530073",
+      "3458764669012530076",
+      "3458764669012530081",
+      "3458764669012530085",
+      "3458764669012530088",
+      "3458764669012530094",
+      "3458764669012530097",
+      "3458764669012530102",
+      "3458764669012530103",
+      "3458764669012530107"
+    ],
+    "miro_board_id": "uXjVGmHy7wQ=",
+    "x_origin": 3000,
+    "y_origin": 0,
+    "created_by": "salmanDN",
+    "created_at": "2026-04-23T11:36:16",
+    "history": [
+      {
+        "action": "created",
+        "timestamp": "2026-04-23T11:36:16",
+        "by": "salmanDN",
+        "snapshot": []
+      }
+    ]
   }
 }

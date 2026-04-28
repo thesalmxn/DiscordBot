@@ -14,10 +14,43 @@ import asyncio
 
 import workflow_manager
 import streaming_monitor
+import vdmonitor_listener
 
 # ==========================================================
 #  Setup
 # ==========================================================
+
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+
+def _env_int(name: str, default: int) -> int:
+    value = os.getenv(name)
+    if value is None or value.strip() == "":
+        return default
+    try:
+        return int(value)
+    except ValueError:
+        return default
+
+
+def _env_int_list(name: str, default: list[int]) -> list[int]:
+    value = os.getenv(name)
+    if value is None or value.strip() == "":
+        return default
+
+    parsed: list[int] = []
+    for part in value.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        try:
+            parsed.append(int(part))
+        except ValueError:
+            continue
+
+    return parsed or default
+
 
 # Define data directory
 DATA_DIR = os.getenv("DATA_DIR", "/app/data")
@@ -26,9 +59,6 @@ os.makedirs(DATA_DIR, exist_ok=True)
 # Update file paths
 TASK_FILE = os.path.join(DATA_DIR, "tasks.json")
 CHECKIN_FILE = os.path.join(DATA_DIR, "checkins.csv")
-
-load_dotenv()
-TOKEN = os.getenv("DISCORD_TOKEN")
 
 handler = logging.FileHandler(
     filename=os.path.join(DATA_DIR, "discord.log"), encoding="utf-8", mode="w"
@@ -39,7 +69,9 @@ logging.basicConfig(
 
 intents = discord.Intents.default()
 intents.message_content = True
-intents.members = True  # Also enable "SERVER MEMBERS INTENT" in the Discord Developer Portal
+intents.members = (
+    True  # Also enable "SERVER MEMBERS INTENT" in the Discord Developer Portal
+)
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -50,12 +82,14 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 OLLAMA_URL = os.getenv("OLLAMA_URL")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
 
-tasks_db = {}       # { task_id: task_dict } — loaded from disk on startup
-task_counter = 1    # auto-increments with each new task
+tasks_db = {}  # { task_id: task_dict } — loaded from disk on startup
+task_counter = 1  # auto-increments with each new task
 notify_channel_id = None  # set via !setnotify; used for hourly work reminders
 active_timers = {}  # { user_id: True } — tracks in-progress break timers
 
-CHECKIN_INTERVAL = int(os.getenv("CHECKIN_INTERVAL"))  # minutes between automatic check-in DMs
+CHECKIN_INTERVAL = _env_int(
+    "CHECKIN_INTERVAL", 60
+)  # minutes between automatic check-in DMs
 
 # Create CSV if missing
 if not os.path.exists(CHECKIN_FILE):
@@ -66,6 +100,7 @@ if not os.path.exists(CHECKIN_FILE):
 # ==========================================================
 #  Timezone + End-of-day WhatsApp reminder settings
 # ==========================================================
+
 
 def load_timezone():
     """
@@ -86,7 +121,9 @@ def load_timezone():
 
     # Final fallback: local machine timezone
     local_tz = datetime.now().astimezone().tzinfo
-    print("[WARNING] Could not load Nicosia timezone. Falling back to local machine timezone.")
+    print(
+        "[WARNING] Could not load Nicosia timezone. Falling back to local machine timezone."
+    )
     print("[WARNING] Install the tzdata package to fix this.")
     print(f"[WARNING] Last error: {last_err}")
     return local_tz
@@ -95,18 +132,14 @@ def load_timezone():
 TIMEZONE = load_timezone()
 
 # End-of-day reminder time (15:58 Nicosia local time). Adjust as needed.
-END_OF_DAY_HOUR = 15
-END_OF_DAY_MINUTE = 58
+END_OF_DAY_HOUR = _env_int("END_OF_DAY_HOUR", 15)
+END_OF_DAY_MINUTE = _env_int("END_OF_DAY_MINUTE", 58)
 
 # Role IDs that receive the end-of-day WhatsApp summary reminder
-TARGET_ROLE_IDS = [
-    1471785941831258114,  # ADMIN
-    1471786595236581568,  # IT DEPARTMENT
-    1471786692967923744,  # VIDEO EDITING DEPARTMENT
-    1471786945632796795,  # WEBSITE DESIGNERS
-    1471787838868689091,  # MANAGERS
-    1490641426005102632,  # ADMIN (test server)
-]
+TARGET_ROLE_IDS = _env_int_list(
+    "TARGET_ROLE_IDS",
+    [],
+)
 
 
 # ==========================================================
@@ -188,7 +221,9 @@ async def _trello_init():
             name_lower = lst["name"].lower()
             if name_lower in todo_names and not _trello_list_ids["todo"]:
                 _trello_list_ids["todo"] = lst["id"]
-            elif name_lower in in_progress_names and not _trello_list_ids["in_progress"]:
+            elif (
+                name_lower in in_progress_names and not _trello_list_ids["in_progress"]
+            ):
                 _trello_list_ids["in_progress"] = lst["id"]
             elif name_lower in done_names and not _trello_list_ids["done"]:
                 _trello_list_ids["done"] = lst["id"]
@@ -204,7 +239,9 @@ async def _trello_init():
                 if not _trello_list_ids[key]:
                     async with session.post(
                         f"{TRELLO_BASE}/lists",
-                        params=_trello_params(name=display_name, idBoard=TRELLO_BOARD_ID),
+                        params=_trello_params(
+                            name=display_name, idBoard=TRELLO_BOARD_ID
+                        ),
                     ) as resp:
                         data = await resp.json()
                         _trello_list_ids[key] = data["id"]
@@ -216,12 +253,16 @@ async def _trello_init():
         print(f"[TRELLO] Init error: {e}")
 
 
-async def trello_create_card(task_id: int, description: str, priority: str = "Normal") -> str | None:
+async def trello_create_card(
+    task_id: int, description: str, priority: str = "Normal"
+) -> str | None:
     """Create a card in the To Do list. Returns the new card ID."""
     if not _trello_enabled() or not _trello_list_ids["todo"]:
         return None
     try:
-        card_desc = f"**Priority:** {priority}\n**Progress:** 0%\n\n*Managed by herbsbot*"
+        card_desc = (
+            f"**Priority:** {priority}\n**Progress:** 0%\n\n*Managed by herbsbot*"
+        )
         async with aiohttp.ClientSession() as session:
             async with session.post(
                 f"{TRELLO_BASE}/cards",
@@ -340,7 +381,9 @@ async def trello_archive_card(task_id: int):
                 params=_trello_params(closed="true"),
             ) as resp:
                 if resp.status == 200:
-                    print(f"[TRELLO] Archived card {card_id} for removed task #{task_id}")
+                    print(
+                        f"[TRELLO] Archived card {card_id} for removed task #{task_id}"
+                    )
                 else:
                     text = await resp.text()
                     print(f"[TRELLO] Archive failed {resp.status}: {text}")
@@ -366,7 +409,6 @@ async def trello_add_comment(task_id: int, text: str):
             )
     except Exception as e:
         print(f"[TRELLO] Error adding comment: {e}")
-
 
 
 # ==========================================================
@@ -451,7 +493,7 @@ async def _miro_init():
 
     url = f"{MIRO_BASE}/boards/{MIRO_BOARD_ID}/items"
     params = {"type": "frame", "limit": 50}
-    
+
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, headers=_miro_headers(), params=params) as resp:
@@ -462,7 +504,7 @@ async def _miro_init():
                 data = await resp.json()
 
         frames = data.get("data", [])
-        
+
         # Map frame names to our categories
         todo_names = {"to do", "todo", "backlog"}
         in_progress_names = {"in progress", "doing", "wip"}
@@ -472,7 +514,7 @@ async def _miro_init():
             title = (frame.get("data", {}).get("title") or "").lower()
             frame_id = frame.get("id")
             # position = frame.get("position", {})
-            
+
             if title in todo_names and not _miro_frame_ids["todo"]:
                 _miro_frame_ids["todo"] = frame_id
                 # _miro_frame_positions["todo"] = {"x": position.get("x", 0), "y": position.get("y", 0)}
@@ -489,7 +531,7 @@ async def _miro_init():
             ("in_progress", "In Progress", 600),
             ("done", "Done", 1200),
         ]
-        
+
         async with aiohttp.ClientSession() as session:
             for key, title, x_pos in needed:
                 if not _miro_frame_ids[key]:
@@ -515,10 +557,14 @@ async def _miro_init():
                             result = await resp.json()
                             _miro_frame_ids[key] = result.get("id")
                             # _miro_frame_positions[key] = {"x": x_pos, "y": 0}
-                            print(f"[MIRO] Created frame '{title}' → {result.get('id')}")
+                            print(
+                                f"[MIRO] Created frame '{title}' → {result.get('id')}"
+                            )
                         else:
                             text = await resp.text()
-                            print(f"[MIRO] Failed to create frame '{title}': {resp.status} - {text}")
+                            print(
+                                f"[MIRO] Failed to create frame '{title}': {resp.status} - {text}"
+                            )
 
         print(f"[MIRO] Frame IDs: {_miro_frame_ids}")
 
@@ -538,7 +584,7 @@ def _build_sticky_content(task_id: int, task: dict) -> str:
     status = task.get("status", "Not started")
     assigned = task.get("assigned") or "Unassigned"
     priority = task.get("priority", "Normal")
-    
+
     return (
         f"#{task_id}: {desc}\n"
         f"━━━━━━━━━━\n"
@@ -549,26 +595,31 @@ def _build_sticky_content(task_id: int, task: dict) -> str:
     )
 
 
-async def miro_create_sticky(task_id: int, description: str, priority: str = "Normal") -> str | None:
+async def miro_create_sticky(
+    task_id: int, description: str, priority: str = "Normal"
+) -> str | None:
     """Create a sticky note in the To Do frame. Returns the new item ID."""
     if not _miro_enabled() or not _miro_frame_ids["todo"]:
         return None
-    
+
     try:
-        task = tasks_db.get(task_id, {
-            "desc": description,
-            "progress": 0,
-            "status": "Not started",
-            "priority": priority,
-            "assigned": None,
-        })
-        
+        task = tasks_db.get(
+            task_id,
+            {
+                "desc": description,
+                "progress": 0,
+                "status": "Not started",
+                "priority": priority,
+                "assigned": None,
+            },
+        )
+
         # Calculate position within the frame
         # frame_pos = _miro_frame_positions["todo"]
         # Stack sticky notes vertically, offset from frame center
-        # existing_in_frame = sum(1 for tid, _ in miro_map.items() 
-                                # if tasks_db.get(tid, {}).get("progress", 0) == 0)
-        
+        # existing_in_frame = sum(1 for tid, _ in miro_map.items()
+        # if tasks_db.get(tid, {}).get("progress", 0) == 0)
+
         sticky_data = {
             "data": {
                 "content": _build_sticky_content(task_id, task),
@@ -588,7 +639,7 @@ async def miro_create_sticky(task_id: int, description: str, priority: str = "No
                 "id": _miro_frame_ids["todo"],
             },
         }
-        
+
         async with aiohttp.ClientSession() as session:
             async with session.post(
                 f"{MIRO_BASE}/boards/{MIRO_BOARD_ID}/sticky_notes",
@@ -604,7 +655,7 @@ async def miro_create_sticky(task_id: int, description: str, priority: str = "No
                     text = await resp.text()
                     print(f"[MIRO] Failed to create sticky: {resp.status} - {text}")
                     return None
-                    
+
     except Exception as e:
         print(f"[MIRO] Error creating sticky: {e}")
         return None
@@ -616,7 +667,7 @@ async def miro_update_sticky(task_id: int, percent: int = None, status: str = ""
     """
     if not _miro_enabled():
         return
-    
+
     item_id = miro_map.get(task_id)
     if not item_id:
         return
@@ -624,7 +675,7 @@ async def miro_update_sticky(task_id: int, percent: int = None, status: str = ""
     task = tasks_db.get(task_id, {})
     if percent is not None:
         task["progress"] = percent
-    
+
     # Determine target frame based on progress
     progress = task.get("progress", 0)
     if progress == 0:
@@ -633,9 +684,9 @@ async def miro_update_sticky(task_id: int, percent: int = None, status: str = ""
         target_frame = "in_progress"
     else:
         target_frame = "done"
-    
+
     target_frame_id = _miro_frame_ids.get(target_frame)
-    
+
     try:
         # Update sticky note content and color
         update_data = {
@@ -646,7 +697,7 @@ async def miro_update_sticky(task_id: int, percent: int = None, status: str = ""
                 "fillColor": _get_sticky_color(task.get("priority", "Normal")),
             },
         }
-        
+
         # If we have a target frame, include parent to move it
         if target_frame_id:
             update_data["parent"] = {"id": target_frame_id}
@@ -658,7 +709,7 @@ async def miro_update_sticky(task_id: int, percent: int = None, status: str = ""
                 "y": 0,
                 "origin": "center",
             }
-        
+
         async with aiohttp.ClientSession() as session:
             async with session.patch(
                 f"{MIRO_BASE}/boards/{MIRO_BOARD_ID}/sticky_notes/{item_id}",
@@ -670,7 +721,7 @@ async def miro_update_sticky(task_id: int, percent: int = None, status: str = ""
                 else:
                     text = await resp.text()
                     print(f"[MIRO] Update failed {resp.status}: {text}")
-                    
+
     except Exception as e:
         print(f"[MIRO] Error updating sticky: {e}")
 
@@ -679,11 +730,11 @@ async def miro_complete_sticky(task_id: int):
     """Move a sticky note to the Done frame."""
     if not _miro_enabled():
         return
-    
+
     item_id = miro_map.get(task_id)
     if not item_id:
         return
-    
+
     await miro_update_sticky(task_id, percent=100)
 
 
@@ -691,11 +742,11 @@ async def miro_delete_sticky(task_id: int):
     """Delete a sticky note from Miro."""
     if not _miro_enabled():
         return
-    
+
     item_id = miro_map.get(task_id)
     if not item_id:
         return
-    
+
     try:
         async with aiohttp.ClientSession() as session:
             async with session.delete(
@@ -707,10 +758,10 @@ async def miro_delete_sticky(task_id: int):
                 else:
                     text = await resp.text()
                     print(f"[MIRO] Delete failed {resp.status}: {text}")
-                    
+
     except Exception as e:
         print(f"[MIRO] Error deleting sticky: {e}")
-    
+
     # Clean up mapping
     miro_map.pop(task_id, None)
     save_miro_map()
@@ -723,11 +774,11 @@ async def miro_delete_sticky(task_id: int):
 #     """
 #     if not _miro_enabled():
 #         return
-    
+
 #     item_id = miro_map.get(task_id)
 #     if not item_id:
 #         return
-    
+
 #     try:
 #         # First, try to find or create the tag
 #         async with aiohttp.ClientSession() as session:
@@ -737,15 +788,15 @@ async def miro_delete_sticky(task_id: int):
 #                 headers=_miro_headers(),
 #             ) as resp:
 #                 tags_data = await resp.json()
-            
+
 #             existing_tags = tags_data.get("data", [])
 #             tag_id = None
-            
+
 #             for tag in existing_tags:
 #                 if tag.get("title", "").lower() == tag_text.lower():
 #                     tag_id = tag.get("id")
 #                     break
-            
+
 #             # Create tag if it doesn't exist
 #             if not tag_id:
 #                 async with session.post(
@@ -756,7 +807,7 @@ async def miro_delete_sticky(task_id: int):
 #                     if resp.status in (200, 201):
 #                         tag_result = await resp.json()
 #                         tag_id = tag_result.get("id")
-            
+
 #             # Attach tag to item
 #             if tag_id:
 #                 async with session.post(
@@ -766,7 +817,7 @@ async def miro_delete_sticky(task_id: int):
 #                 ) as resp:
 #                     if resp.status in (200, 201):
 #                         print(f"[MIRO] Added tag '{tag_text}' to sticky {item_id}")
-                        
+
 #     except Exception as e:
 #         print(f"[MIRO] Error adding tag: {e}")
 
@@ -774,6 +825,7 @@ async def miro_delete_sticky(task_id: int):
 # ==========================================================
 #  Ollama AI Helper
 # ==========================================================
+
 
 async def ask_ollama(prompt: str, system: str = "") -> str:
     """Send a prompt to the local Ollama instance and return the response text."""
@@ -909,6 +961,7 @@ Be genuine, not robotic. Vary your responses. Don't use emojis excessively."""
 #  Task Helpers
 # ==========================================================
 
+
 def progress_bar(percent: int) -> str:
     blocks = max(1, percent // 10)
     return "█" * blocks + "░" * (10 - blocks)
@@ -1002,6 +1055,7 @@ def format_task_table() -> str:
 #  Intent Handler — executes parsed AI intents
 # ==========================================================
 
+
 async def handle_intent(message: discord.Message, intent: dict):
     global task_counter
     action = intent.get("action", "unknown")
@@ -1011,7 +1065,9 @@ async def handle_intent(message: discord.Message, intent: dict):
     if action == "task_add":
         desc = intent.get("description", "").strip()
         if not desc:
-            await channel.send("I couldn't figure out the task description. Could you rephrase?")
+            await channel.send(
+                "I couldn't figure out the task description. Could you rephrase?"
+            )
             return
         tid = task_counter
         tasks_db[tid] = {
@@ -1029,13 +1085,13 @@ async def handle_intent(message: discord.Message, intent: dict):
         if card_id:
             trello_map[tid] = card_id
             save_trello_map()
-        
+
         # Sync to Miro
         miro_id = await miro_create_sticky(tid, desc)
         if miro_id:
             miro_map[tid] = miro_id
             save_miro_map()
-        
+
         # Build response with sync indicators
         sync_icons = []
         if card_id:
@@ -1043,7 +1099,7 @@ async def handle_intent(message: discord.Message, intent: dict):
         if miro_id:
             sync_icons.append("🟡 Miro")
         sync_text = f" ({', '.join(sync_icons)})" if sync_icons else ""
-        
+
         # Send response
         await channel.send(f"🆕 Task #{tid} created: *{desc}*{sync_text}")
 
@@ -1052,7 +1108,9 @@ async def handle_intent(message: discord.Message, intent: dict):
         if tid not in tasks_db:
             await channel.send(f"❌ I couldn't find task #{tid}.")
             return
-        await complete_task(channel, tid, tasks_db[tid].get("assigned") or author.display_name)
+        await complete_task(
+            channel, tid, tasks_db[tid].get("assigned") or author.display_name
+        )
 
     elif action == "task_remove":
         tid = int(intent.get("id", 0))
@@ -1141,9 +1199,13 @@ async def handle_intent(message: discord.Message, intent: dict):
         minutes = max(1, min(int(intent.get("minutes", 5)), 30))
         user = author.id
         if user in active_timers:
-            await channel.send(f"⏳ {author.mention}, you already have a timer running!")
+            await channel.send(
+                f"⏳ {author.mention}, you already have a timer running!"
+            )
             return
-        await channel.send(f"🕓 Starting a {minutes}-minute break for {author.mention} ☕")
+        await channel.send(
+            f"🕓 Starting a {minutes}-minute break for {author.mention} ☕"
+        )
         active_timers[user] = True
 
         async def run_timer():
@@ -1178,20 +1240,20 @@ async def handle_intent(message: discord.Message, intent: dict):
 #  Workflow Intent Handler — routes natural language to workflow_manager
 # ==========================================================
 
+
 async def handle_workflow_intent(message: discord.Message, intent: dict):
     """Execute workflow-related intents parsed by workflow_manager."""
-    action  = intent.get("action", "")
+    action = intent.get("action", "")
     channel = message.channel
-    author  = message.author
-    send    = channel.send
+    author = message.author
+    send = channel.send
 
     # --- Create a new workflow ---
     if action == "workflow_create":
         desc = intent.get("description", "").strip()
         if not desc:
             await send(
-                "What should the workflow be about? "
-                "Give me a short description."
+                "What should the workflow be about? Give me a short description."
             )
             return
         async with channel.typing():
@@ -1204,7 +1266,7 @@ async def handle_workflow_intent(message: discord.Message, intent: dict):
     # --- Edit an existing workflow ---
     elif action == "workflow_edit":
         wf_id = str(intent.get("id", "")).strip()
-        edit  = intent.get("edit", "").strip()
+        edit = intent.get("edit", "").strip()
 
         if not wf_id:
             await send(
@@ -1216,9 +1278,7 @@ async def handle_workflow_intent(message: discord.Message, intent: dict):
             return
 
         if not edit:
-            await send(
-                f"What changes do you want to make to workflow #{wf_id}?"
-            )
+            await send(f"What changes do you want to make to workflow #{wf_id}?")
             return
 
         async with channel.typing():
@@ -1250,10 +1310,7 @@ async def handle_workflow_intent(message: discord.Message, intent: dict):
     elif action == "workflow_view":
         wf_id = str(intent.get("id", "")).strip()
         if not wf_id:
-            await send(
-                "Which workflow do you want to view? "
-                "Please provide the ID."
-            )
+            await send("Which workflow do you want to view? Please provide the ID.")
             await workflow_manager.cmd_workflow_list(send_fn=send)
             return
         await workflow_manager.cmd_workflow_view(send_fn=send, wf_id=wf_id)
@@ -1286,9 +1343,29 @@ async def handle_workflow_intent(message: discord.Message, intent: dict):
             '• *"delete workflow 2"*'
         )
 
+
+def _looks_like_workflow_request(text: str) -> bool:
+    """Quick heuristic gate to avoid sending normal task messages to workflow AI parser."""
+    lowered = text.lower()
+    workflow_hints = [
+        "workflow",
+        "flowchart",
+        "diagram",
+        "miro",
+        "wf ",
+        "wf_",
+        "redraw",
+        "undo workflow",
+        "edit workflow",
+        "create workflow",
+    ]
+    return any(hint in lowered for hint in workflow_hints)
+
+
 # ==========================================================
 #  Events
 # ==========================================================
+
 
 @bot.event
 async def on_ready():
@@ -1298,6 +1375,8 @@ async def on_ready():
     load_miro_map()
     workflow_manager.load_workflows()
     streaming_monitor.setup(bot, TIMEZONE)
+    vdmonitor_listener.set_bot(bot)
+    asyncio.create_task(vdmonitor_listener.start_listener())
     await _trello_init()
     await _miro_init()
 
@@ -1326,12 +1405,14 @@ async def on_message(message):
 
         # Log to CSV
         with open(CHECKIN_FILE, "a", newline="", encoding="utf-8") as f:
-            csv.writer(f).writerow([
-                datetime.now().isoformat(timespec="seconds"),
-                message.author.id,
-                message.author.display_name,
-                reply_text,
-            ])
+            csv.writer(f).writerow(
+                [
+                    datetime.now().isoformat(timespec="seconds"),
+                    message.author.id,
+                    message.author.display_name,
+                    reply_text,
+                ]
+            )
 
         # AI-generated reply
         ai_reply = await generate_checkin_reply(message.author.display_name, reply_text)
@@ -1340,8 +1421,9 @@ async def on_message(message):
         # Forward reply to check-in-responses channel (falls back to general)
         if bot.guilds:
             guild = bot.guilds[0]
-            chan = discord.utils.get(guild.text_channels, name="check-in-responses") \
-                or discord.utils.get(guild.text_channels, name="general")
+            chan = discord.utils.get(
+                guild.text_channels, name="check-in-responses"
+            ) or discord.utils.get(guild.text_channels, name="general")
             if chan:
                 embed = discord.Embed(
                     title=f"💬 Check‑in from {message.author.display_name}",
@@ -1389,24 +1471,24 @@ async def on_message(message):
             return
 
         async with message.channel.typing():
-            # --------------------------------------------------
-            # First check — is this a workflow-related request?
-            # --------------------------------------------------
-            wf_intent = await workflow_manager.parse_workflow_intent(
-                text, message.author.display_name
-            )
+            # Parse workflows only when the message explicitly looks workflow-related.
+            if _looks_like_workflow_request(text):
+                wf_intent = await workflow_manager.parse_workflow_intent(
+                    text, message.author.display_name
+                )
+                if wf_intent:
+                    await handle_workflow_intent(message, wf_intent)
+                    return
 
-            if wf_intent:
-                await handle_workflow_intent(message, wf_intent)
-            else:
-                # Normal task/rest/question intent
-                intent = await parse_intent(text, message.author.display_name)
-                await handle_intent(message, intent)
+            # Default path: task/rest/question intent.
+            intent = await parse_intent(text, message.author.display_name)
+            await handle_intent(message, intent)
 
 
 # ==========================================================
 #  Legacy ! Commands (still work as backup alongside natural language)
 # ==========================================================
+
 
 @bot.command()
 async def task_add(ctx, *, description: str):
@@ -1422,25 +1504,25 @@ async def task_add(ctx, *, description: str):
     }
     task_counter += 1
     save_tasks()
-    
+
     # Sync to Trello and Miro
     card_id = await trello_create_card(tid, description)
     if card_id:
         trello_map[tid] = card_id
         save_trello_map()
-    
+
     miro_id = await miro_create_sticky(tid, description)
     if miro_id:
         miro_map[tid] = miro_id
         save_miro_map()
-    
+
     sync_icons = []
     if card_id:
         sync_icons.append("🟦")
     if miro_id:
         sync_icons.append("🟡")
     sync_text = f" {' '.join(sync_icons)}" if sync_icons else ""
-    
+
     await ctx.send(f"🆕 Task #{tid} created: *{description}*{sync_text}")
 
 
@@ -1450,7 +1532,9 @@ async def task_done(ctx, tid: int):
     if tid not in tasks_db:
         await ctx.send("❌ Task not found.")
         return
-    await complete_task(ctx.channel, tid, tasks_db[tid]["assigned"] or ctx.author.display_name)
+    await complete_task(
+        ctx.channel, tid, tasks_db[tid]["assigned"] or ctx.author.display_name
+    )
 
 
 @bot.command()
@@ -1542,6 +1626,7 @@ async def task_table(ctx):
 #  ☕ Rest Break Command
 # ==========================================================
 
+
 @bot.command()
 async def rest(ctx, minutes: int = 5):
     """Start a timed break (1–30 min, default 5)."""
@@ -1579,6 +1664,7 @@ async def time_cmd(ctx):
 #  Work‑Hour Reminders
 # ==========================================================
 
+
 @bot.command()
 async def setnotify(ctx):
     """Set this channel to receive hourly work-hour reminders."""
@@ -1591,6 +1677,7 @@ async def setnotify(ctx):
 #  EOD Test Command
 # ==========================================================
 
+
 @bot.command()
 async def test_eod(ctx):
     """Manually trigger the end-of-day reminder for testing."""
@@ -1602,6 +1689,7 @@ async def test_eod(ctx):
 # ==========================================================
 #  EOD Reminder Logic
 # ==========================================================
+
 
 async def _send_eod_reminders():
     """
@@ -1652,6 +1740,7 @@ async def _send_eod_reminders():
 #  Scheduled Tasks
 # ==========================================================
 
+
 @tasks.loop(minutes=60)
 async def workday_reminder():
     """Post a work reminder in the notify channel every hour during business hours."""
@@ -1661,7 +1750,9 @@ async def workday_reminder():
     if now.weekday() < 5 and 9 <= now.hour <= 17:
         channel = bot.get_channel(notify_channel_id)
         if channel:
-            await channel.send("☀️ Good day team! Check `!task_table` and stay focused 💪")
+            await channel.send(
+                "☀️ Good day team! Check `!task_table` and stay focused 💪"
+            )
 
 
 @workday_reminder.before_loop
@@ -1673,6 +1764,7 @@ async def before_workday_reminder():
 # ==========================================================
 #  🌿 Automatic User Check‑Ins
 # ==========================================================
+
 
 @tasks.loop(minutes=CHECKIN_INTERVAL)
 async def user_checkin():
@@ -1699,7 +1791,9 @@ async def user_checkin():
                 # Fallback to general channel if member has DMs closed
                 channel = discord.utils.get(guild.text_channels, name="general")
                 if channel:
-                    await channel.send(f"{member.mention} 🌿 How are you doing right now?")
+                    await channel.send(
+                        f"{member.mention} 🌿 How are you doing right now?"
+                    )
                 await asyncio.sleep(2)
 
 
@@ -1711,6 +1805,7 @@ async def before_user_checkin():
 # ==========================================================
 #  ✅ End-of-day WhatsApp Reminder (15:58 Nicosia time, Mon–Fri)
 # ==========================================================
+
 
 @tasks.loop(minutes=1)
 async def end_of_day_whatsapp_reminder():
@@ -1730,10 +1825,10 @@ async def before_end_of_day_whatsapp_reminder():
     print("[DEBUG] end_of_day_whatsapp_reminder loop started.")
 
 
-
 # ============================================================
 #  Workflow Commands — powered by workflow_manager.py
 # ============================================================
+
 
 @bot.command()
 async def workflow(ctx, *, description: str = ""):

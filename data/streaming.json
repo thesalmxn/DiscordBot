@@ -106,6 +106,14 @@
         "start_readable": "2026-04-15 15:12:35",
         "end_readable": "2026-04-15 15:12:40",
         "duration_minutes": 0.1
+      },
+      {
+        "date": "2026-04-24",
+        "start": "2026-04-24T15:47:04+03:00",
+        "end": "2026-04-24T15:47:34+03:00",
+        "start_readable": "2026-04-24 15:47:04",
+        "end_readable": "2026-04-24 15:47:34",
+        "duration_minutes": 0.5
       }
     ],
     "current_start": null,
@@ -261,6 +269,24 @@
         "start_readable": "2026-04-15 15:11:58",
         "end_readable": "2026-04-15 15:12:40",
         "duration_minutes": 0.7,
+        "channel": "General"
+      },
+      {
+        "date": "2026-04-24",
+        "start": "2026-04-24T15:46:49+03:00",
+        "end": "2026-04-24T15:47:34+03:00",
+        "start_readable": "2026-04-24 15:46:49",
+        "end_readable": "2026-04-24 15:47:34",
+        "duration_minutes": 0.8,
+        "channel": "General"
+      },
+      {
+        "date": "2026-04-24",
+        "start": "2026-04-24T15:51:12+03:00",
+        "end": "2026-04-24T15:51:14+03:00",
+        "start_readable": "2026-04-24 15:51:12",
+        "end_readable": "2026-04-24 15:51:14",
+        "duration_minutes": 0.0,
         "channel": "General"
       }
     ],

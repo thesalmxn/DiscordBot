@@ -7,9 +7,11 @@
 import os
 import json
 import re
-import asyncio
 import aiohttp
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ============================================================
 #  Config — reads from same .env as your main bot
@@ -36,31 +38,32 @@ workflow_counter: int = 1
 # ============================================================
 
 DIAGRAM_COLORS = {
-    "start":    "#4CAF50",
-    "end":      "#F44336",
-    "process":  "#2196F3",
+    "start": "#4CAF50",
+    "end": "#F44336",
+    "process": "#2196F3",
     "decision": "#FF9800",
-    "default":  "#9E9E9E",
+    "default": "#9E9E9E",
 }
 
 SHAPE_TYPES = {
-    "start":    "round_rectangle",
-    "end":      "round_rectangle",
-    "process":  "rectangle",
+    "start": "round_rectangle",
+    "end": "round_rectangle",
+    "process": "rectangle",
     "decision": "rhombus",
-    "default":  "rectangle",
+    "default": "rectangle",
 }
 
 TYPE_ICONS = {
-    "start":    "🟢",
-    "end":      "🔴",
-    "process":  "🔷",
+    "start": "🟢",
+    "end": "🔴",
+    "process": "🔷",
     "decision": "🔶",
 }
 
 # ============================================================
 #  Helpers
 # ============================================================
+
 
 def _miro_enabled() -> bool:
     return bool(MIRO_ACCESS_TOKEN and MIRO_BOARD_ID)
@@ -82,6 +85,7 @@ def _next_x_origin() -> int:
 # ============================================================
 #  Persistence
 # ============================================================
+
 
 def load_workflows():
     global workflows_db, workflow_counter
@@ -110,6 +114,7 @@ def save_workflows():
 # ============================================================
 #  Ollama Helper (self-contained, no dependency on main bot)
 # ============================================================
+
 
 async def _ask_ollama(prompt: str, system: str = "") -> str | None:
     full_prompt = f"{system}\n\n{prompt}" if system else prompt
@@ -145,7 +150,7 @@ def _validate_steps(steps: list) -> list:
     """
     if not steps or not isinstance(steps, list):
         return []
-    
+
     if len(steps) == 0:
         return steps
 
@@ -161,7 +166,7 @@ def _validate_steps(steps: list) -> list:
             except (ValueError, TypeError):
                 idx = len(steps) - 1
                 branch["target_index"] = idx
-            
+
             if idx < 0 or idx >= len(steps):
                 branch["target_index"] = len(steps) - 1
 
@@ -172,6 +177,7 @@ def _validate_steps(steps: list) -> list:
 #  Miro: Draw & Delete
 # ============================================================
 
+
 async def _miro_create_board(title: str) -> str:
     """
     Create a new Miro board for the workflow.
@@ -179,13 +185,13 @@ async def _miro_create_board(title: str) -> str:
     """
     if not _miro_enabled():
         return None
-    
+
     headers = _miro_headers()
     board_payload = {
         "name": f"Workflow: {title}",
-        "description": f"AI-generated workflow diagram for: {title}"
+        "description": f"AI-generated workflow diagram for: {title}",
     }
-    
+
     async with aiohttp.ClientSession() as session:
         async with session.post(
             f"{MIRO_BASE}/boards", headers=headers, json=board_payload
@@ -198,6 +204,7 @@ async def _miro_create_board(title: str) -> str:
                 txt = await resp.text()
                 print(f"[WORKFLOW] Board creation failed: {resp.status} {txt}")
                 return None
+
 
 async def _miro_create_diagram(
     title: str,
@@ -213,10 +220,10 @@ async def _miro_create_diagram(
     if not _miro_enabled():
         return {"error": "Miro not configured"}
 
-    # Create a new board for this workflow
-    board_id = await _miro_create_board(title)
+    # Use the configured board. Some Miro plans do not allow board creation.
+    board_id = MIRO_BOARD_ID
     if not board_id:
-        return {"error": "Failed to create Miro board"}
+        return {"error": "MIRO_BOARD_ID is missing"}
 
     shape_ids = []
     connector_ids = []
@@ -224,7 +231,6 @@ async def _miro_create_diagram(
     base = f"{MIRO_BASE}/boards/{board_id}"
 
     async with aiohttp.ClientSession() as session:
-
         # --- Title text ---
         title_payload = {
             "data": {"content": f"<strong>{title}</strong>"},
@@ -254,15 +260,15 @@ async def _miro_create_diagram(
                     "shape": SHAPE_TYPES.get(stype, "rectangle"),
                 },
                 "style": {
-                    "fillColor":          DIAGRAM_COLORS.get(stype, DIAGRAM_COLORS["default"]),
-                    "fontFamily":         "arial",
-                    "fontSize":           "14",
-                    "textAlign":          "center",
-                    "textAlignVertical":  "middle",
-                    "borderColor":        "#000000",
-                    "borderWidth":        "2",
-                    "borderStyle":        "normal",
-                    "color":              "#ffffff",
+                    "fillColor": DIAGRAM_COLORS.get(stype, DIAGRAM_COLORS["default"]),
+                    "fontFamily": "arial",
+                    "fontSize": "14",
+                    "textAlign": "center",
+                    "textAlignVertical": "middle",
+                    "borderColor": "#000000",
+                    "borderWidth": "2",
+                    "borderStyle": "normal",
+                    "color": "#ffffff",
                 },
                 "position": {
                     "x": x_start,
@@ -270,7 +276,7 @@ async def _miro_create_diagram(
                     "origin": "center",
                 },
                 "geometry": {
-                    "width":  200,
+                    "width": 200,
                     "height": 80 if stype != "decision" else 100,
                 },
             }
@@ -304,16 +310,16 @@ async def _miro_create_diagram(
                     ):
                         conn_payload = {
                             "startItem": {
-                                "id":       shape_ids[i],
+                                "id": shape_ids[i],
                                 "position": {"x": "50%", "y": "100%"},
                             },
                             "endItem": {
-                                "id":       shape_ids[target_idx],
+                                "id": shape_ids[target_idx],
                                 "position": {"x": "50%", "y": "0%"},
                             },
                             "captions": [
                                 {
-                                    "content":  branch.get("label", ""),
+                                    "content": branch.get("label", ""),
                                     "position": "50%",
                                 }
                             ],
@@ -343,16 +349,16 @@ async def _miro_create_diagram(
                 if next_idx < len(shape_ids) and shape_ids[next_idx]:
                     conn_payload = {
                         "startItem": {
-                            "id":       shape_ids[i],
+                            "id": shape_ids[i],
                             "position": {"x": "50%", "y": "100%"},
                         },
                         "endItem": {
-                            "id":       shape_ids[next_idx],
+                            "id": shape_ids[next_idx],
                             "position": {"x": "50%", "y": "0%"},
                         },
                         "style": {
-                            "strokeColor":  "#000000",
-                            "strokeWidth":  "2",
+                            "strokeColor": "#000000",
+                            "strokeWidth": "2",
                             "endStrokeCap": "stealth",
                         },
                     }
@@ -365,7 +371,11 @@ async def _miro_create_diagram(
                             result = await resp.json()
                             connector_ids.append(result["id"])
 
-    return {"shape_ids": shape_ids, "connector_ids": connector_ids, "board_id": board_id}
+    return {
+        "shape_ids": shape_ids,
+        "connector_ids": connector_ids,
+        "board_id": board_id,
+    }
 
 
 async def _miro_delete_diagram(wf: dict):
@@ -420,9 +430,9 @@ async def _miro_redraw(wf_id: str) -> dict:
         y_start=wf.get("y_origin", 0),
     )
 
-    wf["miro_shape_ids"]    = result.get("shape_ids", [])
+    wf["miro_shape_ids"] = result.get("shape_ids", [])
     wf["miro_connector_ids"] = result.get("connector_ids", [])
-    wf["miro_board_id"]      = result.get("board_id", "")
+    wf["miro_board_id"] = result.get("board_id", "")
     save_workflows()
     return result
 
@@ -430,6 +440,7 @@ async def _miro_redraw(wf_id: str) -> dict:
 # ============================================================
 #  AI: Generate + Edit Workflows
 # ============================================================
+
 
 async def ai_generate_workflow(description: str) -> list[dict] | None:
     """Ask Ollama to design a workflow from a natural language description."""
@@ -502,7 +513,7 @@ Rules for steps:
 - Max 20 steps, labels under 50 chars
 - Return ONLY the JSON object, no markdown, no explanation."""
 
-    prompt = f"""Current workflow "{wf['title']}" (ID: {wf_id}):
+    prompt = f"""Current workflow "{wf["title"]}" (ID: {wf_id}):
 {current_steps_json}
 
 User ({author}) wants to: "{edit_request}"
@@ -528,7 +539,7 @@ Return the modified JSON:"""
             return {"error": "AI returned invalid JSON. Try rephrasing."}
 
     new_steps = result.get("steps")
-    changes   = result.get("changes", "Modified workflow")
+    changes = result.get("changes", "Modified workflow")
 
     if not new_steps or not isinstance(new_steps, list) or len(new_steps) < 2:
         return {"error": "AI produced an invalid workflow. Try rephrasing."}
@@ -536,12 +547,14 @@ Return the modified JSON:"""
     new_steps = _validate_steps(new_steps)
 
     # Save history + apply
-    wf.setdefault("history", []).append({
-        "action":    changes,
-        "timestamp": datetime.now().isoformat(timespec="seconds"),
-        "by":        author,
-        "snapshot":  wf["steps"].copy(),   # store previous steps for undo
-    })
+    wf.setdefault("history", []).append(
+        {
+            "action": changes,
+            "timestamp": datetime.now().isoformat(timespec="seconds"),
+            "by": author,
+            "snapshot": wf["steps"].copy(),  # store previous steps for undo
+        }
+    )
     wf["steps"] = new_steps
     save_workflows()
 
@@ -551,8 +564,8 @@ Return the modified JSON:"""
         return {"error": redraw["error"]}
 
     return {
-        "success":    True,
-        "changes":    changes,
+        "success": True,
+        "changes": changes,
         "step_count": len(new_steps),
     }
 
@@ -583,8 +596,8 @@ async def ai_undo_workflow(wf_id: str, author: str) -> dict:
         return {"error": redraw["error"]}
 
     return {
-        "success":  True,
-        "changes":  f"Undid: {last['action']}",
+        "success": True,
+        "changes": f"Undid: {last['action']}",
         "step_count": len(snapshot),
     }
 
@@ -593,8 +606,9 @@ async def ai_undo_workflow(wf_id: str, author: str) -> dict:
 #  Public API — called from your main bot file
 # ============================================================
 
+
 async def cmd_workflow_create(
-    send_fn,            # async function: send_fn("message")
+    send_fn,  # async function: send_fn("message")
     description: str,
     author_name: str,
 ) -> None:
@@ -620,21 +634,23 @@ async def cmd_workflow_create(
 
     wf_id = str(workflow_counter)
     workflows_db[wf_id] = {
-        "title":               description[:50],
-        "steps":               steps,
-        "miro_shape_ids":      result.get("shape_ids", []),
-        "miro_connector_ids":  result.get("connector_ids", []),
-        "miro_board_id":       result.get("board_id", ""),
-        "x_origin":            x_origin,
-        "y_origin":            0,
-        "created_by":          author_name,
-        "created_at":          datetime.now().isoformat(timespec="seconds"),
-        "history":             [{
-            "action":    "created",
-            "timestamp": datetime.now().isoformat(timespec="seconds"),
-            "by":        author_name,
-            "snapshot":  [],
-        }],
+        "title": description[:50],
+        "steps": steps,
+        "miro_shape_ids": result.get("shape_ids", []),
+        "miro_connector_ids": result.get("connector_ids", []),
+        "miro_board_id": result.get("board_id", ""),
+        "x_origin": x_origin,
+        "y_origin": 0,
+        "created_by": author_name,
+        "created_at": datetime.now().isoformat(timespec="seconds"),
+        "history": [
+            {
+                "action": "created",
+                "timestamp": datetime.now().isoformat(timespec="seconds"),
+                "by": author_name,
+                "snapshot": [],
+            }
+        ],
     }
     workflow_counter += 1
     save_workflows()
@@ -698,13 +714,15 @@ async def cmd_workflow_undo(send_fn, wf_id: str, author_name: str) -> None:
 async def cmd_workflow_list(send_fn) -> None:
     """List all workflows."""
     if not workflows_db:
-        await send_fn("📭 No workflows yet. Use `!workflow <description>` to create one.")
+        await send_fn(
+            "📭 No workflows yet. Use `!workflow <description>` to create one."
+        )
         return
 
     lines = ["**📊 Saved Workflows**\n"]
     for wf_id, wf in workflows_db.items():
-        step_count  = len(wf.get("steps", []))
-        edit_count  = max(0, len(wf.get("history", [])) - 1)
+        step_count = len(wf.get("steps", []))
+        edit_count = max(0, len(wf.get("history", [])) - 1)
         lines.append(
             f"**#{wf_id}** — {wf['title']}\n"
             f"   📊 {step_count} steps · ✏️ {edit_count} edits · "
@@ -726,21 +744,19 @@ async def cmd_workflow_view(send_fn, wf_id: str) -> None:
         line = f"`{i}` {icon} {step['label']}"
         if step.get("branches"):
             branch_text = " | ".join(
-                f"*{b['label']}* → step {b['target_index']}"
-                for b in step["branches"]
+                f"*{b['label']}* → step {b['target_index']}" for b in step["branches"]
             )
             line += f"\n     ↳ {branch_text}"
         lines.append(line)
 
     history = wf.get("history", [])
     if len(history) > 1:
-        lines.append(f"\n**📜 Last {min(5, len(history)-1)} edits:**")
+        lines.append(f"\n**📜 Last {min(5, len(history) - 1)} edits:**")
         for entry in history[-5:]:
             if entry["action"] == "created":
                 continue
             lines.append(
-                f"  • {entry['action']} — "
-                f"{entry['by']} ({entry['timestamp'][:16]})"
+                f"  • {entry['action']} — {entry['by']} ({entry['timestamp'][:16]})"
             )
 
     await send_fn("\n".join(lines))

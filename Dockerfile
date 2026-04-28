@@ -18,9 +18,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application files
 COPY . .
 
-# Create volume mount points for persistent data
-VOLUME ["/app/data"]
-
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 

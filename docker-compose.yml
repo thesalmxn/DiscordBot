@@ -3,6 +3,8 @@ services:
     build: .
     container_name: discord-task-bot
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - TZ=Asia/Nicosia
@@ -13,7 +15,7 @@ services:
     networks:
       - bot-network
     healthcheck:
-      test: ["CMD-SHELL", "pgrep -f bot.py || exit 1"]
+      test: ["CMD-SHELL", "tr '\\0' ' ' < /proc/1/cmdline | grep -q 'python .*bot.py'"]
       interval: 60s
       timeout: 10s
       retries: 3
