@@ -1,6 +1,6 @@
 # Herbs Are My World - Discord Bot
 
-A feature-rich Discord bot with streaming monitoring, task management, workflow automation, Trello integration, and AI-powered assistance. This bot is designed to help manage community interactions, track workflows, and automate routine management tasks.
+A feature-rich Discord bot with streaming monitoring, task management, workflow automation, Trello integration, VDMonitor desktop monitoring, and AI-powered assistance. This bot is designed to help manage community interactions, track workflows, and automate routine management tasks.
 
 ## Features
 
@@ -38,29 +38,49 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 - End-of-day WhatsApp reminder summaries at configurable times
 - Role-based reminder targeting
 
+### 🖥️ VDMonitor (Desktop Monitoring)
+- Monitor desktop application usage
+- Track active window changes
+- Send notifications to Discord when specific apps are used
+- Configurable monitoring rules via `vdmonitor_config.env`
+
 ### 🤖 Ollama AI Integration
 - Generate workflow suggestions and optimizations
 - AI-powered text generation for workflow descriptions
 - Customizable LLM model selection
 
+### 🖥️ VDMonitor (Desktop Monitoring)
+- Monitor desktop application usage
+- Track active window changes
+- Send notifications to Discord when specific apps are used
+- Configurable monitoring rules via `vdmonitor_config.env`
+
 ## Project Structure
 
 ```
 .
-├── bot.py          # Main bot with full features (streaming, tasks, workflows)
-├── streaming_monitor.py             # Standalone streaming monitor module
-├── workflow_manager.py              # Standalone workflow manager and Miro integration
-├── requirements.txt                 # Python dependencies
-├── Dockerfile                       # Docker container setup
-├── docker-compose.yml              # Docker compose configuration
-├── README.md                        # This file
+├── bot.py                    # Main bot with full features
+├── streaming_monitor.py     # Standalone streaming monitor module
+├── workflow_manager.py      # Standalone workflow manager and Miro integration
+├── vdmonitor_listener.py    # VDMonitor Discord listener
+├── secret.py                # Secret management utilities
+├── requirements.txt         # Python dependencies
+├── Dockerfile               # Docker container setup
+├── docker-compose.yml       # Docker compose configuration
+├── COMMANDS.md              # Detailed command reference
+├── README.md                # This file
+├── dimitrisPC.env           # Local environment configuration
+├── VDMonitor/               # Desktop monitoring application
+│   ├── vdmonitor.py         # Main VDMonitor script
+│   ├── vdmonitor_config.env # VDMonitor configuration
+│   └── build/               # Built executable
 └── data/
-    ├── checkins.csv                 # Check-in response logs
-    ├── miro_map.json               # Miro board to Discord mapping
-    ├── streaming.json              # Streaming session history
-    ├── tasks.json                  # Task database
-    ├── trello_map.json             # Trello board mapping
-    └── workflows.json              # Workflow definitions
+    ├── checkins.csv         # Check-in response logs
+    ├── miro_map.json       # Miro board to Discord mapping
+    ├── streaming.json      # Streaming session history
+    ├── tasks.json          # Task database
+    ├── trello_map.json     # Trello board mapping
+    └── workflows.json     # Workflow definitions
 ```
 
 ## Setup & Installation
@@ -110,6 +130,10 @@ MIRO_BOARD_ID=your_board_id
 # Trello Integration (Optional)
 TRELLO_API_KEY=your_trello_key
 TRELLO_TOKEN=your_trello_token
+
+# VDMonitor Desktop Monitoring (Optional)
+VDMON_WEBHOOK_URL=https://discord.com/api/webhooks/your_webhook_url
+VDMON_TARGET_CHANNEL=123456789012345678
 ```
 
 **Note:** Never commit the `.env` file to version control. Add it to `.gitignore` if not already present.
@@ -166,6 +190,8 @@ docker-compose up --build
 | `MIRO_BOARD_ID` | No | - | Miro board ID for workflow visualization |
 | `TRELLO_API_KEY` | No | - | Trello API key |
 | `TRELLO_TOKEN` | No | - | Trello authentication token |
+| `VDMON_WEBHOOK_URL` | No | - | Discord webhook URL for VDMonitor notifications |
+| `VDMON_TARGET_CHANNEL` | No | - | Discord channel ID for VDMonitor alerts |
 
 ## File Formats
 
@@ -330,6 +356,18 @@ Standalone module for:
 - AI-powered optimization
 - Diagram generation with shapes and colors
 
+### vdmonitor_listener.py
+Discord listener module for:
+- Receiving VDMonitor notifications
+- Processing desktop activity alerts
+- Forwarding app usage data to Discord channels
+
+### VDMonitor/
+Desktop monitoring application:
+- `vdmonitor.py` - Main monitoring script
+- `vdmonitor_config.env` - Configuration file
+- `build/VDMonitor/` - Built executable for Windows
+
 ## Logging
 
 Logs are stored in `data/discord.log` and displayed in console with timestamps and log levels (DEBUG, INFO, WARNING, ERROR).
@@ -365,6 +403,12 @@ YYYY-MM-DD HH:MM:SS [LEVEL] Message
 - Start Ollama server before running bot for AI features
 - Verify `OLLAMA_MODEL` matches installed model
 
+### VDMonitor not sending notifications
+- Verify `vdmonitor_config.env` exists in `VDMonitor/` directory
+- Check that `VDMON_WEBHOOK_URL` is set in the config
+- Ensure VDMonitor.exe is running on the target machine
+- Verify the target Discord channel ID is correct
+
 ## Development
 
 ### Adding New Commands
@@ -397,4 +441,5 @@ For issues, questions, or contributions, please open an issue or contact the pro
 
 ## Version History
 
+- **v1.1.0** - Added VDMonitor desktop monitoring integration
 - **v1.0.0** - Initial release with streaming, tasks, workflows, and Trello integration
