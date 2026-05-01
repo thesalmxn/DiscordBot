@@ -1,68 +1,917 @@
-[2026-04-15 15:11:48] [INFO    ] discord.client: logging in using static token
-[2026-04-15 15:11:48] [DEBUG   ] discord.http: GET https://discord.com/api/v10/users/@me with None has returned 200
-[2026-04-15 15:11:48] [DEBUG   ] discord.http: GET /users/@me has found its initial rate limit bucket hash (78bb8553d9352a5a2f89f9def401287a).
-[2026-04-15 15:11:48] [DEBUG   ] discord.http: GET https://discord.com/api/v10/users/@me has received {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None, 'mfa_enabled': False, 'locale': 'en-US', 'premium_type': 0, 'email': None, 'verified': True, 'bio': ''}
-[2026-04-15 15:11:49] [DEBUG   ] discord.http: GET https://discord.com/api/v10/oauth2/applications/@me with None has returned 200
-[2026-04-15 15:11:49] [DEBUG   ] discord.http: GET /oauth2/applications/@me has found its initial rate limit bucket hash (d28a133af187e91d71d96a223467ce49).
-[2026-04-15 15:11:49] [DEBUG   ] discord.http: GET https://discord.com/api/v10/oauth2/applications/@me has received {'id': '1485595275258101900', 'name': 'herbsbot', 'icon': None, 'description': '', 'type': None, 'bot': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'summary': '', 'is_monetized': False, 'is_verified': False, 'is_discoverable': False, 'bot_public': True, 'bot_require_code_grant': False, 'install_params': {'scopes': ['applications.commands'], 'permissions': '0'}, 'integration_types_config': {'0': {'oauth2_install_params': {'scopes': ['applications.commands'], 'permissions': '0'}}, '1': {'oauth2_install_params': {'scopes': ['applications.commands'], 'permissions': '0'}}}, 'verify_key': 'b5a8dab1c85f113e4a9c497adc65475040441addf5171c5ffbb3ef83bf261b1d', 'flags': 557056, 'hook': True, 'storefront_available': False, 'redirect_uris': [], 'interactions_endpoint_url': None, 'role_connections_verification_url': None, 'owner': {'id': '1476250480408531137', 'username': 'mohammadsalmansunakal', 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57', 'discriminator': '0', 'public_flags': 0, 'flags': 0, 'banner': None, 'accent_color': 2434341, 'global_name': 'salmanDN', 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': '#252525', 'clan': None, 'primary_guild': None}, 'approximate_guild_count': 1, 'approximate_user_install_count': 0, 'approximate_user_authorization_count': 0, 'interactions_event_types': [], 'interactions_version': 1, 'explicit_content_filter': 0, 'rpc_application_state': 0, 'store_application_state': 1, 'verification_state': 1, 'integration_public': True, 'integration_require_code_grant': False, 'discoverability_state': 1, 'discovery_eligibility_flags': 224, 'monetization_state': 1, 'verification_eligibility_flags': 91036, 'monetization_eligibility_flags': 181988, 'bot_approximate_guild_count': 1, 'team': None, 'internal_guild_restriction': 2, 'approved_consoles': [], 'pricing_localization_strategy': 'localized_price_sets'}
-[2026-04-15 15:11:49] [DEBUG   ] discord.gateway: Created websocket connected to wss://gateway.discord.gg/
-[2026-04-15 15:11:49] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-arm-us-east1-c-g8vd",{"micros":0.0}]']}}
-[2026-04-15 15:11:49] [DEBUG   ] discord.gateway: Shard ID None has sent the IDENTIFY payload.
-[2026-04-15 15:11:49] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
-[2026-04-15 15:11:49] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'READY', 's': 1, 'op': 0, 'd': {'v': 10, 'user_settings': {}, 'user': {'verified': True, 'username': 'herbsbot', 'primary_guild': None, 'mfa_enabled': False, 'id': '1485595275258101900', 'global_name': None, 'flags': 0, 'email': None, 'discriminator': '9471', 'clan': None, 'bot': True, 'avatar': None}, 'session_type': 'normal', 'session_id': '3bdd667bfda8d15a0227337a9bfd4199', 'resume_gateway_url': 'wss://gateway-us-east1-c.discord.gg', 'relationships': [], 'private_channels': [], 'presences': [], 'guilds': [{'unavailable': True, 'id': '1485910845333442633'}], 'guild_join_requests': [], 'geo_ordered_rtc_regions': ['tel-aviv', 'bucharest', 'saudi-arabia', 'warsaw', 'milan'], 'game_relationships': [], 'auth': {}, 'application': {'id': '1485595275258101900', 'flags_new': '557056', 'flags': 557056}, '_trace': ['["gateway-prd-arm-us-east1-c-g8vd",{"micros":140992,"calls":["id_created",{"micros":1789,"calls":[]},"session_lookup_time",{"micros":343,"calls":[]},"session_lookup_finished",{"micros":10,"calls":[]},"sessions-prd-gcp-us-east1-c-178",{"micros":138422,"calls":["start_session",{"micros":80299,"calls":["prd-rpc-d5c78b6c-cprft",{"micros":25722,"calls":["get_user",{"micros":5332},"get_guilds",{"micros":3437},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":9},"pending_payments",{"micros":1082},"apex_experiments",{"micros":47057},"sessions_experiments",{"micros":5},"played_application_ids",{"micros":3},"linked_users",{"micros":2},"ad_personalization_toggles_disabled",{"micros":2},"regional_feature_config",{"micros":2}]}]},"starting_guild_connect",{"micros":85,"calls":[]},"presence_started",{"micros":41371,"calls":[]},"guilds_started",{"micros":160,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":16408,"calls":[]},"connect_finished",{"micros":16426,"calls":[]},"build_ready",{"micros":57,"calls":[]},"clean_ready",{"micros":21,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}]']}}
-[2026-04-15 15:11:49] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:49] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 3bdd667bfda8d15a0227337a9bfd4199).
-[2026-04-15 15:11:49] [DEBUG   ] discord.client: Dispatching event connect
-[2026-04-15 15:11:49] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_CREATE', 's': 2, 'op': 0, 'd': {'premium_tier': 0, 'splash': None, 'rules_channel_id': None, 'roles': [{'version': 1774339152572, 'unicode_emoji': None, 'tags': {}, 'position': 0, 'permissions': '2248473465835073', 'name': '@everyone', 'mentionable': False, 'managed': False, 'id': '1485910845333442633', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 0}, 'color': 0}, {'version': 1775467032572, 'unicode_emoji': None, 'tags': {'bot_id': '1485595275258101900'}, 'position': 2, 'permissions': '8', 'name': 'herbsbot', 'mentionable': False, 'managed': True, 'id': '1485911686551572525', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 0}, 'color': 0}, {'version': 1775467032831, 'unicode_emoji': None, 'tags': {}, 'position': 1, 'permissions': '0', 'name': 'Admin', 'mentionable': False, 'managed': False, 'id': '1490641426005102632', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 15158332}, 'color': 15158332}], 'explicit_content_filter': 0, 'stage_instances': [], 'premium_features': None, 'profile': None, 'owner_configured_content_level': 0, 'presences': [], 'max_members': 25000000, 'afk_timeout': 300, 'id': '1485910845333442633', 'incidents_data': None, 'voice_states': [], 'verification_level': 0, 'member_count': 3, 'name': 'Test server', 'default_message_notifications': 0, 'application_id': None, 'unavailable': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'emojis': [], 'threads': [], 'region': 'deprecated', 'embedded_activities': [], 'lazy': True, 'system_channel_id': '1485910846008983793', 'soundboard_sounds': [], 'official_message_color': None, 'game_application_ids': None, 'activity_instances': [], 'stickers': [], 'owner_id': '1476250480408531137', 'description': None, 'afk_channel_id': None, 'members': [{'user': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'display_name': None, 'discriminator': '9471', 'collectibles': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}], 'moderator_reporting': None, 'guild_scheduled_events': [], 'max_video_channel_users': 25, 'application_command_counts': {}, 'discovery_splash': None, 'nsfw_level': 0, 'public_updates_channel_id': None, 'safety_alerts_channel_id': None, 'mfa_level': 0, 'inventory_settings': None, 'latest_onboarding_question_id': None, 'home_header': None, 'large': False, 'premium_progress_bar_enabled_user_updated_at': None, 'premium_progress_bar_enabled': False, 'nsfw': False, 'features': [], 'preferred_locale': 'en-US', 'version': 1774948308028, 'verification_role_id': None, 'icon': None, 'system_channel_flags': 0, 'experiments': {'evaluation_id': None, 'assignments': []}, 'premium_subscription_count': 0, 'channels': [{'version': 1774339152580, 'type': 4, 'position': 0, 'permission_overwrites': [], 'name': 'Text Channels', 'id': '1485910846008983791', 'flags': 0}, {'version': 1774339152584, 'type': 4, 'position': 0, 'permission_overwrites': [], 'name': 'Voice Channels', 'id': '1485910846008983792', 'flags': 0}, {'version': 1774339152599, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'general', 'last_message_id': '1493927524194058260', 'id': '1485910846008983793', 'icon_emoji': {'name': '👋', 'id': None}, 'flags': 0}, {'version': 1774339152615, 'user_limit': 0, 'type': 2, 'status': None, 'rtc_region': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '1485910846008983792', 'name': 'General', 'last_message_id': None, 'id': '1485910846008983794', 'icon_emoji': {'name': '🎙', 'id': None}, 'flags': 0, 'bitrate': 64000}, {'version': 1776243551319, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 1, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'nsfw': False, 'name': 'streaming-logs', 'last_message_id': '1493946736891396238', 'id': '1493898473261764668', 'flags': 0}, {'version': 1776246278895, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 2, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'nsfw': False, 'name': 'check-in-responses', 'last_message_id': '1493910104079204383', 'id': '1493909913544691712', 'flags': 0}], 'banner': None, 'vanity_url_code': None, 'max_stage_video_channel_users': 50, 'hub_type': None}}
-[2026-04-15 15:11:49] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:50] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_MEMBERS_CHUNK', 's': 3, 'op': 0, 'd': {'nonce': '9ce0d5d32f661152d3158790297df7dd', 'members': [{'user': {'username': 'serivos', 'public_flags': 0, 'primary_guild': {'tag': 'NGA', 'identity_guild_id': '868243623962083348', 'identity_enabled': True, 'badge': '21129b437afdc5d4c56b399d9d86e25d'}, 'id': '345710426077528066', 'global_name': 'Oligarca Narigón', 'display_name_styles': None, 'display_name': 'Oligarca Narigón', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'f58642de31e120de375694a1b8f2c636'}, 'roles': [], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-04-15T10:53:10.748276+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, {'user': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'display_name': None, 'discriminator': '9471', 'collectibles': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}], 'guild_id': '1485910845333442633', 'chunk_index': 0, 'chunk_count': 1}}
-[2026-04-15 15:11:50] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:50] [DEBUG   ] discord.state: Processed a chunk for 3 members in guild ID 1485910845333442633.
-[2026-04-15 15:11:51] [DEBUG   ] discord.client: Dispatching event guild_available
-[2026-04-15 15:11:51] [DEBUG   ] discord.client: Dispatching event ready
-[2026-04-15 15:11:51] [DEBUG   ] discord.client: on_voice_state_update has successfully been registered as an event
-[2026-04-15 15:11:53] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'RATE_LIMITED', 's': 4, 'op': 0, 'd': {'retry_after': 26.727, 'opcode': 8, 'meta': {'nonce': 'b66bd47a0912427ec058785bde69a519', 'guild_id': '1485910845333442633'}}}
-[2026-04-15 15:11:53] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:53] [DEBUG   ] discord.gateway: Unknown event RATE_LIMITED.
-[2026-04-15 15:11:58] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'VOICE_STATE_UPDATE', 's': 5, 'op': 0, 'd': {'member': {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'user_id': '1476250480408531137', 'suppress': False, 'session_id': 'd57eac62651935e11bf68421409e5fed', 'self_video': False, 'self_mute': True, 'self_deaf': False, 'request_to_speak_timestamp': None, 'mute': False, 'guild_id': '1485910845333442633', 'discoverable': True, 'deaf': False, 'channel_id': '1485910846008983794'}}
-[2026-04-15 15:11:58] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:58] [DEBUG   ] discord.client: Dispatching event voice_state_update
-[2026-04-15 15:11:58] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'VOICE_CHANNEL_START_TIME_UPDATE', 's': 6, 'op': 0, 'd': {'voice_start_time': 1776255115, 'id': '1485910846008983794', 'guild_id': '1485910845333442633'}}
-[2026-04-15 15:11:58] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:58] [DEBUG   ] discord.gateway: Unknown event VOICE_CHANNEL_START_TIME_UPDATE.
-[2026-04-15 15:11:58] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 7, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-15T12:11:55.811000+00:00', 'pinned': False, 'nonce': '3946270778854017014', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1493946978264940654', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '🟢 salmanDN joined a voice channel', 'timestamp': '2026-04-15T12:11:58.494599+00:00', 'thumbnail': {'width': 256, 'url': 'https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024', 'proxy_url': 'https://images-ext-1.discordapp.net/external/JadwpP2dGXPKxU4HYXvv5pUbL9kFeibsN3JQrKUYURY/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png', 'placeholder_version': 1, 'placeholder': 'VAgKFwQHyGeEiYWGeYeYiIh5eCB4B4QG', 'height': 256, 'flags': 0, 'content_type': 'image/png'}, 'id': '1493946978264940655', 'fields': [{'value': '<@1476250480408531137> (`1476250480408531137`)', 'name': '👤 User', 'inline': False}, {'value': 'General', 'name': '🔊 Channel', 'inline': True}, {'value': '2026-04-15 15:11:58', 'name': '🕐 Joined at', 'inline': True}], 'color': 3066993}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
-[2026-04-15 15:11:58] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:11:58] [DEBUG   ] discord.client: Dispatching event message
-[2026-04-15 15:11:58] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"thumbnail":{"url":"https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024"},"fields":[{"inline":false,"name":"\ud83d\udc64 User","value":"<@1476250480408531137> (`1476250480408531137`)"},{"inline":true,"name":"\ud83d\udd0a Channel","value":"General"},{"inline":true,"name":"\ud83d\udd50 Joined at","value":"2026-04-15 15:11:58"}],"flags":0,"color":3066993,"timestamp":"2026-04-15T12:11:58.494599+00:00","type":"rich","title":"\ud83d\udfe2 salmanDN joined a voice channel"}],"content":null,"components":[],"nonce":"3946270778854017014","enforce_nonce":true,"tts":false} has returned 200
-[2026-04-15 15:11:58] [DEBUG   ] discord.http: POST /channels/{channel_id}/messages has found its initial rate limit bucket hash (62df3a8bf3cb0dd93018dd80d06039f6).
-[2026-04-15 15:11:58] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '🟢 salmanDN joined a voice channel', 'color': 3066993, 'timestamp': '2026-04-15T12:11:58.494599+00:00', 'fields': [{'name': '👤 User', 'value': '<@1476250480408531137> (`1476250480408531137`)', 'inline': False}, {'name': '🔊 Channel', 'value': 'General', 'inline': True}, {'name': '🕐 Joined at', 'value': '2026-04-15 15:11:58', 'inline': True}], 'thumbnail': {'url': 'https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024', 'proxy_url': 'https://images-ext-1.discordapp.net/external/JadwpP2dGXPKxU4HYXvv5pUbL9kFeibsN3JQrKUYURY/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png', 'width': 256, 'height': 256, 'content_type': 'image/png', 'placeholder': 'VAgKFwQHyGeEiYWGeYeYiIh5eCB4B4QG', 'placeholder_version': 1, 'flags': 0}}], 'timestamp': '2026-04-15T12:11:55.811000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1493946978264940654', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '3946270778854017014'}
-[2026-04-15 15:12:30] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 7.
-[2026-04-15 15:12:30] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
-[2026-04-15 15:12:35] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'VOICE_STATE_UPDATE', 's': 8, 'op': 0, 'd': {'member': {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'user_id': '1476250480408531137', 'suppress': False, 'session_id': 'd57eac62651935e11bf68421409e5fed', 'self_video': False, 'self_stream': True, 'self_mute': True, 'self_deaf': False, 'request_to_speak_timestamp': None, 'mute': False, 'guild_id': '1485910845333442633', 'discoverable': True, 'deaf': False, 'channel_id': '1485910846008983794'}}
-[2026-04-15 15:12:35] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:12:35] [DEBUG   ] discord.client: Dispatching event voice_state_update
-[2026-04-15 15:12:36] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 9, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-15T12:12:33.063000+00:00', 'pinned': False, 'nonce': '8764329796181541734', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1493947134511288370', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '🔴 salmanDN started streaming', 'timestamp': '2026-04-15T12:12:35.473453+00:00', 'thumbnail': {'width': 256, 'url': 'https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024', 'proxy_url': 'https://images-ext-1.discordapp.net/external/JadwpP2dGXPKxU4HYXvv5pUbL9kFeibsN3JQrKUYURY/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png', 'placeholder_version': 1, 'placeholder': 'VAgKFwQHyGeEiYWGeYeYiIh5eCB4B4QG', 'height': 256, 'flags': 0, 'content_type': 'image/png'}, 'id': '1493947134511288371', 'fields': [{'value': '<@1476250480408531137> (`1476250480408531137`)', 'name': '👤 User', 'inline': False}, {'value': 'General', 'name': '🔊 Voice Channel', 'inline': True}, {'value': '2026-04-15 15:12:35', 'name': '🕐 Started at', 'inline': True}, {'value': '0.6 min', 'name': '🔊 Already in voice for', 'inline': True}], 'color': 16711680}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
-[2026-04-15 15:12:36] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:12:36] [DEBUG   ] discord.client: Dispatching event message
-[2026-04-15 15:12:36] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"thumbnail":{"url":"https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024"},"fields":[{"inline":false,"name":"\ud83d\udc64 User","value":"<@1476250480408531137> (`1476250480408531137`)"},{"inline":true,"name":"\ud83d\udd0a Voice Channel","value":"General"},{"inline":true,"name":"\ud83d\udd50 Started at","value":"2026-04-15 15:12:35"},{"inline":true,"name":"\ud83d\udd0a Already in voice for","value":"0.6 min"}],"flags":0,"color":16711680,"timestamp":"2026-04-15T12:12:35.473453+00:00","type":"rich","title":"\ud83d\udd34 salmanDN started streaming"}],"content":null,"components":[],"nonce":"8764329796181541734","enforce_nonce":true,"tts":false} has returned 200
-[2026-04-15 15:12:36] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '🔴 salmanDN started streaming', 'color': 16711680, 'timestamp': '2026-04-15T12:12:35.473453+00:00', 'fields': [{'name': '👤 User', 'value': '<@1476250480408531137> (`1476250480408531137`)', 'inline': False}, {'name': '🔊 Voice Channel', 'value': 'General', 'inline': True}, {'name': '🕐 Started at', 'value': '2026-04-15 15:12:35', 'inline': True}, {'name': '🔊 Already in voice for', 'value': '0.6 min', 'inline': True}], 'thumbnail': {'url': 'https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024', 'proxy_url': 'https://images-ext-1.discordapp.net/external/JadwpP2dGXPKxU4HYXvv5pUbL9kFeibsN3JQrKUYURY/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png', 'width': 256, 'height': 256, 'content_type': 'image/png', 'placeholder': 'VAgKFwQHyGeEiYWGeYeYiIh5eCB4B4QG', 'placeholder_version': 1, 'flags': 0}}], 'timestamp': '2026-04-15T12:12:33.063000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1493947134511288370', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '8764329796181541734'}
-[2026-04-15 15:12:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'VOICE_STATE_UPDATE', 's': 10, 'op': 0, 'd': {'member': {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'user_id': '1476250480408531137', 'suppress': False, 'session_id': 'd57eac62651935e11bf68421409e5fed', 'self_video': False, 'self_stream': True, 'self_mute': True, 'self_deaf': False, 'request_to_speak_timestamp': None, 'mute': False, 'guild_id': '1485910845333442633', 'discoverable': True, 'deaf': False, 'channel_id': None}}
-[2026-04-15 15:12:40] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:12:40] [DEBUG   ] discord.client: Dispatching event voice_state_update
-[2026-04-15 15:12:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'VOICE_CHANNEL_START_TIME_UPDATE', 's': 11, 'op': 0, 'd': {'voice_start_time': None, 'id': '1485910846008983794', 'guild_id': '1485910845333442633'}}
-[2026-04-15 15:12:40] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:12:40] [DEBUG   ] discord.gateway: Unknown event VOICE_CHANNEL_START_TIME_UPDATE.
-[2026-04-15 15:12:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'VOICE_CHANNEL_STATUS_UPDATE', 's': 12, 'op': 0, 'd': {'status': None, 'id': '1485910846008983794', 'guild_id': '1485910845333442633'}}
-[2026-04-15 15:12:40] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:12:40] [DEBUG   ] discord.gateway: Unknown event VOICE_CHANNEL_STATUS_UPDATE.
-[2026-04-15 15:12:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 13, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-15T12:12:37.753000+00:00', 'pinned': False, 'nonce': '17681624469447765429', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1493947154182570104', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '📴 salmanDN left voice while streaming', 'timestamp': '2026-04-15T12:12:40.413099+00:00', 'thumbnail': {'width': 256, 'url': 'https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024', 'proxy_url': 'https://images-ext-1.discordapp.net/external/JadwpP2dGXPKxU4HYXvv5pUbL9kFeibsN3JQrKUYURY/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png', 'placeholder_version': 1, 'placeholder': 'VAgKFwQHyGeEiYWGeYeYiIh5eCB4B4QG', 'height': 256, 'flags': 0, 'content_type': 'image/png'}, 'id': '1493947154182570106', 'fields': [{'value': '<@1476250480408531137> (`1476250480408531137`)', 'name': '👤 User', 'inline': False}, {'value': 'General', 'name': '🔊 Channel', 'inline': False}, {'value': '**🔊 Voice Session:**', 'name': '\u200b', 'inline': False}, {'value': '15:11:58 → 15:12:40', 'name': '🕐 Voice session', 'inline': True}, {'value': '0.7 min', 'name': '⏱️ Voice duration', 'inline': True}, {'value': '17 sessions — 23.8 min', 'name': "📅 Today's voice total", 'inline': False}, {'value': '**🔴 Stream Today:**', 'name': '\u200b', 'inline': False}, {'value': '15:12:35 → 15:12:40', 'name': '🕐 Last stream session', 'inline': True}, {'value': '0.1 min', 'name': '⏱️ Stream duration', 'inline': True}, {'value': '13 sessions — 6.7 min', 'name': "📅 Today's stream total", 'inline': False}], 'color': 15158332}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
-[2026-04-15 15:12:40] [DEBUG   ] discord.client: Dispatching event socket_event_type
-[2026-04-15 15:12:40] [DEBUG   ] discord.client: Dispatching event message
-[2026-04-15 15:12:40] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"thumbnail":{"url":"https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024"},"fields":[{"inline":false,"name":"\ud83d\udc64 User","value":"<@1476250480408531137> (`1476250480408531137`)"},{"inline":false,"name":"\ud83d\udd0a Channel","value":"General"},{"inline":false,"name":"\u200b","value":"**\ud83d\udd0a Voice Session:**"},{"inline":true,"name":"\ud83d\udd50 Voice session","value":"15:11:58 \u2192 15:12:40"},{"inline":true,"name":"\u23f1\ufe0f Voice duration","value":"0.7 min"},{"inline":false,"name":"\ud83d\udcc5 Today's voice total","value":"17 sessions \u2014 23.8 min"},{"inline":false,"name":"\u200b","value":"**\ud83d\udd34 Stream Today:**"},{"inline":true,"name":"\ud83d\udd50 Last stream session","value":"15:12:35 \u2192 15:12:40"},{"inline":true,"name":"\u23f1\ufe0f Stream duration","value":"0.1 min"},{"inline":false,"name":"\ud83d\udcc5 Today's stream total","value":"13 sessions \u2014 6.7 min"}],"flags":0,"color":15158332,"timestamp":"2026-04-15T12:12:40.413099+00:00","type":"rich","title":"\ud83d\udcf4 salmanDN left voice while streaming"}],"content":null,"components":[],"nonce":"17681624469447765429","enforce_nonce":true,"tts":false} has returned 200
-[2026-04-15 15:12:40] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '📴 salmanDN left voice while streaming', 'color': 15158332, 'timestamp': '2026-04-15T12:12:40.413099+00:00', 'fields': [{'name': '👤 User', 'value': '<@1476250480408531137> (`1476250480408531137`)', 'inline': False}, {'name': '🔊 Channel', 'value': 'General', 'inline': False}, {'name': '\u200b', 'value': '**🔊 Voice Session:**', 'inline': False}, {'name': '🕐 Voice session', 'value': '15:11:58 → 15:12:40', 'inline': True}, {'name': '⏱️ Voice duration', 'value': '0.7 min', 'inline': True}, {'name': "📅 Today's voice total", 'value': '17 sessions — 23.8 min', 'inline': False}, {'name': '\u200b', 'value': '**🔴 Stream Today:**', 'inline': False}, {'name': '🕐 Last stream session', 'value': '15:12:35 → 15:12:40', 'inline': True}, {'name': '⏱️ Stream duration', 'value': '0.1 min', 'inline': True}, {'name': "📅 Today's stream total", 'value': '13 sessions — 6.7 min', 'inline': False}], 'thumbnail': {'url': 'https://cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png?size=1024', 'proxy_url': 'https://images-ext-1.discordapp.net/external/JadwpP2dGXPKxU4HYXvv5pUbL9kFeibsN3JQrKUYURY/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1476250480408531137/ce11d724f9db55950eac6bde2e3b1e57.png', 'width': 256, 'height': 256, 'content_type': 'image/png', 'placeholder': 'VAgKFwQHyGeEiYWGeYeYiIh5eCB4B4QG', 'placeholder_version': 1, 'flags': 0}}], 'timestamp': '2026-04-15T12:12:37.753000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1493947154182570104', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '17681624469447765429'}
-[2026-04-15 15:13:11] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 13.
-[2026-04-15 15:13:12] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
-[2026-04-15 15:13:53] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 13.
-[2026-04-15 15:13:53] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
-[2026-04-15 15:14:34] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 13.
-[2026-04-15 15:14:34] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:53:15] [INFO    ] discord.client: logging in using static token
+[2026-04-28 13:53:16] [DEBUG   ] discord.http: GET https://discord.com/api/v10/users/@me with None has returned 200
+[2026-04-28 13:53:16] [DEBUG   ] discord.http: GET /users/@me has found its initial rate limit bucket hash (78bb8553d9352a5a2f89f9def401287a).
+[2026-04-28 13:53:16] [DEBUG   ] discord.http: GET https://discord.com/api/v10/users/@me has received {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None, 'mfa_enabled': False, 'locale': 'en-US', 'premium_type': 0, 'email': None, 'verified': True, 'bio': ''}
+[2026-04-28 13:53:17] [DEBUG   ] discord.http: GET https://discord.com/api/v10/oauth2/applications/@me with None has returned 200
+[2026-04-28 13:53:17] [DEBUG   ] discord.http: GET /oauth2/applications/@me has found its initial rate limit bucket hash (d28a133af187e91d71d96a223467ce49).
+[2026-04-28 13:53:17] [DEBUG   ] discord.http: GET https://discord.com/api/v10/oauth2/applications/@me has received {'id': '1485595275258101900', 'name': 'herbsbot', 'icon': None, 'description': '', 'type': None, 'bot': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'summary': '', 'is_monetized': False, 'is_verified': False, 'is_discoverable': False, 'bot_public': True, 'bot_require_code_grant': False, 'install_params': {'scopes': ['applications.commands'], 'permissions': '0'}, 'integration_types_config': {'0': {'oauth2_install_params': {'scopes': ['applications.commands'], 'permissions': '0'}}, '1': {'oauth2_install_params': {'scopes': ['applications.commands'], 'permissions': '0'}}}, 'verify_key': 'b5a8dab1c85f113e4a9c497adc65475040441addf5171c5ffbb3ef83bf261b1d', 'flags': 557056, 'hook': True, 'storefront_available': False, 'redirect_uris': [], 'interactions_endpoint_url': None, 'role_connections_verification_url': None, 'owner': {'id': '1476250480408531137', 'username': 'mohammadsalmansunakal', 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57', 'discriminator': '0', 'public_flags': 0, 'flags': 0, 'banner': None, 'accent_color': 2434341, 'global_name': 'salmanDN', 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': '#252525', 'clan': None, 'primary_guild': None}, 'approximate_guild_count': 1, 'approximate_user_install_count': 0, 'approximate_user_authorization_count': 0, 'interactions_event_types': [], 'interactions_version': 1, 'explicit_content_filter': 0, 'rpc_application_state': 0, 'store_application_state': 1, 'verification_state': 1, 'integration_public': True, 'integration_require_code_grant': False, 'discoverability_state': 1, 'discovery_eligibility_flags': 224, 'monetization_state': 1, 'verification_eligibility_flags': 91036, 'monetization_eligibility_flags': 181988, 'bot_approximate_guild_count': 1, 'team': None, 'internal_guild_restriction': 2, 'approved_consoles': [], 'pricing_localization_strategy': 'localized_price_sets'}
+[2026-04-28 13:53:17] [DEBUG   ] discord.gateway: Created websocket connected to wss://gateway.discord.gg/
+[2026-04-28 13:53:17] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-arm-us-east1-d-412b",{"micros":0.0}]']}}
+[2026-04-28 13:53:17] [DEBUG   ] discord.gateway: Shard ID None has sent the IDENTIFY payload.
+[2026-04-28 13:53:18] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:53:18] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'READY', 's': 1, 'op': 0, 'd': {'v': 10, 'user_settings': {}, 'user': {'verified': True, 'username': 'herbsbot', 'primary_guild': None, 'mfa_enabled': False, 'id': '1485595275258101900', 'global_name': None, 'flags': 0, 'email': None, 'discriminator': '9471', 'clan': None, 'bot': True, 'avatar': None}, 'session_type': 'normal', 'session_id': 'dc8103ae8543fd16524706be3138bee6', 'resume_gateway_url': 'wss://gateway-us-east1-d.discord.gg', 'relationships': [], 'private_channels': [], 'presences': [], 'guilds': [{'unavailable': True, 'id': '1485910845333442633'}], 'guild_join_requests': [], 'geo_ordered_rtc_regions': ['tel-aviv', 'bucharest', 'saudi-arabia', 'warsaw', 'milan'], 'game_relationships': [], 'auth': {}, 'application': {'id': '1485595275258101900', 'flags_new': '557056', 'flags': 557056}, '_trace': ['["gateway-prd-arm-us-east1-d-412b",{"micros":261818,"calls":["id_created",{"micros":1390,"calls":[]},"session_lookup_time",{"micros":313,"calls":[]},"session_lookup_finished",{"micros":20,"calls":[]},"sessions-prd-gcp-us-east1-d-63",{"micros":259668,"calls":["start_session",{"micros":215066,"calls":["prd-rpc-6f8dcb998b-7kbmk",{"micros":90023,"calls":["get_user",{"micros":24716},"get_guilds",{"micros":9403},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":245},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":7524},"apex_experiments",{"micros":102209},"sessions_experiments",{"micros":8},"played_application_ids",{"micros":5},"linked_users",{"micros":4},"ad_personalization_toggles_disabled",{"micros":3},"regional_feature_config",{"micros":4}]}]},"starting_guild_connect",{"micros":39,"calls":[]},"presence_started",{"micros":298,"calls":[]},"guilds_started",{"micros":87,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":44137,"calls":[]},"connect_finished",{"micros":44160,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":3,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}]']}}
+[2026-04-28 13:53:18] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 13:53:18] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: dc8103ae8543fd16524706be3138bee6).
+[2026-04-28 13:53:18] [DEBUG   ] discord.client: Dispatching event connect
+[2026-04-28 13:53:18] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_CREATE', 's': 2, 'op': 0, 'd': {'rules_channel_id': None, 'members': [{'user': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'display_name': None, 'discriminator': '9471', 'collectibles': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}], 'application_id': None, 'moderator_reporting': None, 'lazy': True, 'profile': None, 'stage_instances': [], 'application_command_counts': {}, 'premium_subscription_count': 0, 'premium_features': None, 'id': '1485910845333442633', 'roles': [{'version': 1774339152572, 'unicode_emoji': None, 'tags': {}, 'position': 0, 'permissions': '2248473465835073', 'name': '@everyone', 'mentionable': False, 'managed': False, 'id': '1485910845333442633', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 0}, 'color': 0}, {'version': 1776932671740, 'unicode_emoji': None, 'tags': {'bot_id': '1485595275258101900'}, 'position': 3, 'permissions': '8', 'name': 'herbsbot', 'mentionable': False, 'managed': True, 'id': '1485911686551572525', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 0}, 'color': 0}, {'version': 1776932671735, 'unicode_emoji': None, 'tags': {}, 'position': 2, 'permissions': '0', 'name': 'Admin', 'mentionable': False, 'managed': False, 'id': '1490641426005102632', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 15158332}, 'color': 15158332}, {'version': 1776932671985, 'unicode_emoji': None, 'tags': {}, 'position': 1, 'permissions': '0', 'name': 'Tech Team', 'mentionable': False, 'managed': False, 'id': '1496788779187437698', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 3066993}, 'color': 3066993}], 'official_message_color': None, 'max_stage_video_channel_users': 50, 'member_count': 3, 'region': 'deprecated', 'name': 'Test server', 'preferred_locale': 'en-US', 'presences': [], 'stickers': [], 'threads': [], 'emojis': [], 'public_updates_channel_id': None, 'description': None, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'vanity_url_code': None, 'system_channel_flags': 0, 'nsfw': False, 'game_application_ids': None, 'experiments': {'evaluation_id': None, 'assignments': []}, 'voice_states': [], 'verification_level': 0, 'explicit_content_filter': 0, 'banner': None, 'splash': None, 'large': False, 'premium_tier': 0, 'max_members': 25000000, 'incidents_data': None, 'verification_role_id': None, 'inventory_settings': None, 'afk_timeout': 300, 'premium_progress_bar_enabled_user_updated_at': None, 'icon': None, 'embedded_activities': [], 'nsfw_level': 0, 'mfa_level': 0, 'unavailable': False, 'activity_instances': [], 'owner_configured_content_level': 0, 'discovery_splash': None, 'features': [], 'default_message_notifications': 0, 'owner_id': '1476250480408531137', 'version': 1774948308028, 'soundboard_sounds': [], 'premium_progress_bar_enabled': False, 'guild_scheduled_events': [], 'channels': [{'version': 1774339152580, 'type': 4, 'position': 0, 'permission_overwrites': [], 'name': 'Text Channels', 'id': '1485910846008983791', 'flags': 0}, {'version': 1774339152584, 'type': 4, 'position': 0, 'permission_overwrites': [], 'name': 'Voice Channels', 'id': '1485910846008983792', 'flags': 0}, {'version': 1774339152599, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'general', 'last_message_id': '1497208110857850880', 'id': '1485910846008983793', 'icon_emoji': {'name': '👋', 'id': None}, 'flags': 0}, {'version': 1774339152615, 'user_limit': 0, 'type': 2, 'rtc_region': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '1485910846008983792', 'name': 'General', 'last_message_id': None, 'id': '1485910846008983794', 'icon_emoji': {'name': '🎙', 'id': None}, 'flags': 0, 'bitrate': 64000}, {'version': 1776243551319, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 1, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'streaming-logs', 'last_message_id': '1498637721382686761', 'id': '1493898473261764668', 'flags': 0}, {'version': 1776246278895, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 2, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'check-in-responses', 'last_message_id': '1493910104079204383', 'id': '1493909913544691712', 'flags': 0}, {'version': 1776930648890, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 3, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'work-reminders', 'last_message_id': None, 'id': '1496780369322709012', 'flags': 0}], 'afk_channel_id': None, 'hub_type': None, 'home_header': None, 'latest_onboarding_question_id': None, 'system_channel_id': '1485910846008983793', 'max_video_channel_users': 25, 'safety_alerts_channel_id': None}}
+[2026-04-28 13:53:18] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 13:53:18] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_MEMBERS_CHUNK', 's': 3, 'op': 0, 'd': {'nonce': 'c98278fe472c86f38602c69d7b40dddd', 'members': [{'user': {'username': 'serivos', 'public_flags': 0, 'primary_guild': {'tag': 'NGA', 'identity_guild_id': '868243623962083348', 'identity_enabled': True, 'badge': '21129b437afdc5d4c56b399d9d86e25d'}, 'id': '345710426077528066', 'global_name': 'Oligarca Narigón', 'display_name_styles': None, 'display_name': 'Oligarca Narigón', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'f58642de31e120de375694a1b8f2c636'}, 'roles': ['1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-04-15T10:53:10.748000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632', '1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, {'user': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'display_name': None, 'discriminator': '9471', 'collectibles': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}], 'guild_id': '1485910845333442633', 'chunk_index': 0, 'chunk_count': 1}}
+[2026-04-28 13:53:18] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 13:53:18] [DEBUG   ] discord.state: Processed a chunk for 3 members in guild ID 1485910845333442633.
+[2026-04-28 13:53:20] [DEBUG   ] discord.client: Dispatching event guild_available
+[2026-04-28 13:53:20] [DEBUG   ] discord.client: Dispatching event ready
+[2026-04-28 13:53:20] [DEBUG   ] discord.client: on_voice_state_update has successfully been registered as an event
+[2026-04-28 13:53:22] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'RATE_LIMITED', 's': 4, 'op': 0, 'd': {'retry_after': 25.744, 'opcode': 8, 'meta': {'nonce': 'd8095f99f22109be180653ca8ba1fbb5', 'guild_id': '1485910845333442633'}}}
+[2026-04-28 13:53:22] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 13:53:22] [DEBUG   ] discord.gateway: Unknown event RATE_LIMITED.
+[2026-04-28 13:53:36] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'TYPING_START', 's': 5, 'op': 0, 'd': {'user_id': '1476250480408531137', 'timestamp': 1777373617, 'member': {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632', '1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'channel_id': '1493898473261764668', 'guild_id': '1485910845333442633'}}
+[2026-04-28 13:53:36] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 13:53:36] [DEBUG   ] discord.client: Dispatching event typing
+[2026-04-28 13:53:36] [DEBUG   ] discord.client: Dispatching event raw_typing
+[2026-04-28 13:53:58] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:53:59] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:54:40] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:54:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:55:21] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:55:21] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:56:02] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:56:03] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:56:44] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:56:44] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:57:25] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:57:25] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:58:06] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:58:06] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:58:47] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 13:58:48] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 13:59:15] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 6, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T10:59:15.765000+00:00', 'pinned': False, 'nonce': '1111387982812031928', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498639733159493643', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'timestamp': '2026-04-28T10:59:14.681326+00:00', 'id': '1498639733159493644', 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'fields': [{'value': '2.0 minutes', 'name': '⏱️ Idle for', 'inline': True}, {'value': 'No', 'name': '🖥️ Streaming', 'inline': True}, {'value': 'No', 'name': '🔊 In Voice', 'inline': True}], 'content_scan_version': 0, 'color': 15965202}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 13:59:15] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 13:59:15] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 13:59:15] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor \u2022 Inactivity Detection"},"fields":[{"inline":true,"name":"\u23f1\ufe0f Idle for","value":"2.0 minutes"},{"inline":true,"name":"\ud83d\udda5\ufe0f Streaming","value":"No"},{"inline":true,"name":"\ud83d\udd0a In Voice","value":"No"}],"flags":0,"color":15965202,"timestamp":"2026-04-28T10:59:14.681326+00:00","type":"rich","title":"\ud83d\ude34 Thomas appears to be idle"}],"content":null,"components":[],"nonce":"1111387982812031928","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 13:59:15] [DEBUG   ] discord.http: POST /channels/{channel_id}/messages has found its initial rate limit bucket hash (62df3a8bf3cb0dd93018dd80d06039f6).
+[2026-04-28 13:59:15] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'color': 15965202, 'timestamp': '2026-04-28T10:59:14.681326+00:00', 'fields': [{'name': '⏱️ Idle for', 'value': '2.0 minutes', 'inline': True}, {'name': '🖥️ Streaming', 'value': 'No', 'inline': True}, {'name': '🔊 In Voice', 'value': 'No', 'inline': True}], 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T10:59:15.765000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498639733159493643', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '1111387982812031928'}
+[2026-04-28 13:59:29] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 13:59:29] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:00:10] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:00:10] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:00:51] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:00:52] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:01:32] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:01:33] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:02:14] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:02:14] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:02:55] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:02:55] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:03:36] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:03:37] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:04:13] [DEBUG   ] discord.gateway: Received WSMessage(type=<WSMsgType.CLOSED: 257>, data=None, extra=None)
+[2026-04-28 14:04:13] [DEBUG   ] discord.gateway: Websocket closed with 1006, attempting a reconnect.
+[2026-04-28 14:04:13] [DEBUG   ] discord.client: Got a request to RESUME the websocket.
+[2026-04-28 14:04:13] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:04:13] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:04:13] [ERROR   ] discord.client: Attempting a reconnect in 0.76s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:04:16] [DEBUG   ] discord.gateway: Created websocket connected to wss://gateway-us-east1-d.discord.gg
+[2026-04-28 14:04:16] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-arm-us-east1-d-4bqx",{"micros":0.0}]']}}
+[2026-04-28 14:04:16] [DEBUG   ] discord.gateway: Shard ID None has sent the RESUME payload.
+[2026-04-28 14:04:16] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:04:16] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'RESUMED', 's': 7, 'op': 0, 'd': {'_trace': ['["gateway-prd-arm-us-east1-d-4bqx",{"micros":17515,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":17053,"calls":[]},"session_lookup_finished",{"micros":9,"calls":[]},"sessions-prd-gcp-us-east1-d-63",{"micros":17}]}]']}}
+[2026-04-28 14:04:16] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:04:16] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc8103ae8543fd16524706be3138bee6.
+[2026-04-28 14:04:16] [DEBUG   ] discord.client: Dispatching event resumed
+[2026-04-28 14:04:39] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 8, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:04:39.946000+00:00', 'pinned': False, 'nonce': '1498641069305233408', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1490641426005102632', '1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641092873027615', 'flags': 0, 'embeds': [], 'edited_timestamp': None, 'content': 'break', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'discriminator': '0', 'collectibles': None, 'clan': None, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:04:39] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:04:39] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:04:51] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 9, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:04:52.435000+00:00', 'pinned': False, 'nonce': '10471747966508484177', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641145255825470', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:04:51.218610+00:00', 'id': '1498641145255825471', 'footer': {'text': 'VD Monitor'}, 'description': '🟢 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`.', 'content_scan_version': 0, 'color': 3066993}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:04:51] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:04:51] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:04:52] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":3066993,"timestamp":"2026-04-28T11:04:51.218610+00:00","type":"rich","description":"\ud83d\udfe2 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"10471747966508484177","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:04:52] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🟢 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`.', 'color': 3066993, 'timestamp': '2026-04-28T11:04:51.218610+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:04:52.435000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498641145255825470', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '10471747966508484177'}
+[2026-04-28 14:04:52] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 10, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:04:53.417000+00:00', 'pinned': False, 'nonce': '8983212988456058845', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641149374631976', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:04:52.552416+00:00', 'id': '1498641149374631977', 'footer': {'text': 'VD Monitor'}, 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'content_scan_version': 0, 'color': 9807270}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:04:52] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:04:52] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:04:52] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":9807270,"timestamp":"2026-04-28T11:04:52.552416+00:00","type":"rich","description":"\ud83d\udd34 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"8983212988456058845","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:04:52] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'color': 9807270, 'timestamp': '2026-04-28T11:04:52.552416+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:04:53.417000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498641149374631976', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '8983212988456058845'}
+[2026-04-28 14:04:55] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 11, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:04:56.057000+00:00', 'pinned': False, 'nonce': '10208312693293056703', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641160447721533', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:04:55.181270+00:00', 'id': '1498641160447721534', 'footer': {'text': 'VD Monitor'}, 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'content_scan_version': 0, 'color': 9807270}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:04:55] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:04:55] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:04:55] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":9807270,"timestamp":"2026-04-28T11:04:55.181270+00:00","type":"rich","description":"\ud83d\udd34 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"10208312693293056703","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:04:55] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'color': 9807270, 'timestamp': '2026-04-28T11:04:55.181270+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:04:56.057000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498641160447721533', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '10208312693293056703'}
+[2026-04-28 14:04:57] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 11.
+[2026-04-28 14:05:01] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:05:01] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 12, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:05:02.027000+00:00', 'pinned': False, 'nonce': '3705632166619951636', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641185487720700', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:04:57.217249+00:00', 'id': '1498641185487720701', 'footer': {'text': 'VD Monitor'}, 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'content_scan_version': 0, 'color': 9807270}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:05:01] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:05:01] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:05:01] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":9807270,"timestamp":"2026-04-28T11:04:57.217249+00:00","type":"rich","description":"\ud83d\udd34 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"3705632166619951636","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:05:01] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'color': 9807270, 'timestamp': '2026-04-28T11:04:57.217249+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:05:02.027000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498641185487720700', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '3705632166619951636'}
+[2026-04-28 14:05:08] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'TYPING_START', 's': 13, 'op': 0, 'd': {'user_id': '1476250480408531137', 'timestamp': 1777374309, 'member': {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632', '1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'channel_id': '1493898473261764668', 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:05:08] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:05:08] [DEBUG   ] discord.client: Dispatching event typing
+[2026-04-28 14:05:08] [DEBUG   ] discord.client: Dispatching event raw_typing
+[2026-04-28 14:05:10] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 14, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:05:10.508000+00:00', 'pinned': False, 'nonce': '1498641216646938624', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1490641426005102632', '1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641221059477535', 'flags': 0, 'embeds': [], 'edited_timestamp': None, 'content': 'break2', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'discriminator': '0', 'collectibles': None, 'clan': None, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:05:10] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:05:10] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:05:19] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 15, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:05:19.913000+00:00', 'pinned': False, 'nonce': '17668997191828485083', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641260506775563', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:05:18.725110+00:00', 'id': '1498641260506775564', 'footer': {'text': 'VD Monitor'}, 'description': '🟢 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`.', 'content_scan_version': 0, 'color': 3066993}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:05:19] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:05:19] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:05:19] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":3066993,"timestamp":"2026-04-28T11:05:18.725110+00:00","type":"rich","description":"\ud83d\udfe2 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"17668997191828485083","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:05:19] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🟢 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`.', 'color': 3066993, 'timestamp': '2026-04-28T11:05:18.725110+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:05:19.913000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498641260506775563', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '17668997191828485083'}
+[2026-04-28 14:05:38] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 15.
+[2026-04-28 14:05:39] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:06:19] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 16, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:06:19.893000+00:00', 'pinned': False, 'nonce': '9048702112131783183', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498641512081129563', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'timestamp': '2026-04-28T11:06:18.738211+00:00', 'id': '1498641512081129564', 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'fields': [{'value': '1.0 minutes', 'name': '⏱️ Idle for', 'inline': True}, {'value': 'No', 'name': '🖥️ Streaming', 'inline': True}, {'value': 'No', 'name': '🔊 In Voice', 'inline': True}], 'content_scan_version': 0, 'color': 15965202}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:06:19] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:06:19] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:06:19] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor \u2022 Inactivity Detection"},"fields":[{"inline":true,"name":"\u23f1\ufe0f Idle for","value":"1.0 minutes"},{"inline":true,"name":"\ud83d\udda5\ufe0f Streaming","value":"No"},{"inline":true,"name":"\ud83d\udd0a In Voice","value":"No"}],"flags":0,"color":15965202,"timestamp":"2026-04-28T11:06:18.738211+00:00","type":"rich","title":"\ud83d\ude34 Thomas appears to be idle"}],"content":null,"components":[],"nonce":"9048702112131783183","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:06:19] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'color': 15965202, 'timestamp': '2026-04-28T11:06:18.738211+00:00', 'fields': [{'name': '⏱️ Idle for', 'value': '1.0 minutes', 'inline': True}, {'name': '🖥️ Streaming', 'value': 'No', 'inline': True}, {'name': '🔊 In Voice', 'value': 'No', 'inline': True}], 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:06:19.893000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498641512081129563', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '9048702112131783183'}
+[2026-04-28 14:06:19] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 16.
+[2026-04-28 14:06:20] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:07:01] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 16.
+[2026-04-28 14:07:01] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:07:42] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 16.
+[2026-04-28 14:07:42] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:08:23] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 16.
+[2026-04-28 14:08:23] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:09:04] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 16.
+[2026-04-28 14:09:05] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:09:46] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 16.
+[2026-04-28 14:09:49] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:10:24] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 17, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:10:24.877000+00:00', 'pinned': False, 'nonce': '6561348807624179402', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498642539618635876', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'timestamp': '2026-04-28T11:10:18.768375+00:00', 'id': '1498642539618635877', 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'fields': [{'value': '5.0 minutes', 'name': '⏱️ Idle for', 'inline': True}, {'value': 'No', 'name': '🖥️ Streaming', 'inline': True}, {'value': 'No', 'name': '🔊 In Voice', 'inline': True}], 'content_scan_version': 0, 'color': 15965202}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:10:24] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:10:24] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:10:24] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor \u2022 Inactivity Detection"},"fields":[{"inline":true,"name":"\u23f1\ufe0f Idle for","value":"5.0 minutes"},{"inline":true,"name":"\ud83d\udda5\ufe0f Streaming","value":"No"},{"inline":true,"name":"\ud83d\udd0a In Voice","value":"No"}],"flags":0,"color":15965202,"timestamp":"2026-04-28T11:10:18.768375+00:00","type":"rich","title":"\ud83d\ude34 Thomas appears to be idle"}],"content":null,"components":[],"nonce":"6561348807624179402","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:10:24] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'color': 15965202, 'timestamp': '2026-04-28T11:10:18.768375+00:00', 'fields': [{'name': '⏱️ Idle for', 'value': '5.0 minutes', 'inline': True}, {'name': '🖥️ Streaming', 'value': 'No', 'inline': True}, {'name': '🔊 In Voice', 'value': 'No', 'inline': True}], 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:10:24.877000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498642539618635876', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '6561348807624179402'}
+[2026-04-28 14:10:27] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 17.
+[2026-04-28 14:10:31] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:11:08] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 17.
+[2026-04-28 14:11:21] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 1, 'd': None}
+[2026-04-28 14:11:27] [DEBUG   ] discord.gateway: Received WSMessage(type=<WSMsgType.CLOSED: 257>, data=None, extra=None)
+[2026-04-28 14:11:27] [DEBUG   ] discord.gateway: Websocket closed with 1006, attempting a reconnect.
+[2026-04-28 14:11:27] [DEBUG   ] discord.client: Got a request to RESUME the websocket.
+[2026-04-28 14:11:27] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:11:40] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:11:40] [ERROR   ] discord.client: Attempting a reconnect in 1.35s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:11:53] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:11:53] [ERROR   ] discord.client: Attempting a reconnect in 0.54s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:11:53] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:11:53] [ERROR   ] discord.client: Attempting a reconnect in 6.97s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:12:00] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:12:00] [ERROR   ] discord.client: Attempting a reconnect in 2.76s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:12:03] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:12:03] [ERROR   ] discord.client: Attempting a reconnect in 16.23s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:12:20] [DEBUG   ] discord.gateway: Created websocket connected to wss://gateway-us-east1-d.discord.gg
+[2026-04-28 14:12:20] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-arm-us-east1-d-cqkd",{"micros":0.0}]']}}
+[2026-04-28 14:12:20] [DEBUG   ] discord.gateway: Shard ID None has sent the RESUME payload.
+[2026-04-28 14:12:21] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:12:21] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'RESUMED', 's': 18, 'op': 0, 'd': {'_trace': ['["gateway-prd-arm-us-east1-d-cqkd",{"micros":517,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":236,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"sessions-prd-gcp-us-east1-d-63",{"micros":14}]}]']}}
+[2026-04-28 14:12:21] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:12:21] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc8103ae8543fd16524706be3138bee6.
+[2026-04-28 14:12:21] [DEBUG   ] discord.client: Dispatching event resumed
+[2026-04-28 14:13:02] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:13:02] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:13:43] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:13:43] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:14:24] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:14:24] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:15:05] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:15:06] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:15:47] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:15:47] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:16:28] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:16:28] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:17:09] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:17:09] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:17:50] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:17:51] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:18:32] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:18:32] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:19:13] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:19:13] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:19:54] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:19:54] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:20:35] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:20:36] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:21:17] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:21:17] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:21:58] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:21:58] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:22:39] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:22:39] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:23:20] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:23:21] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:24:02] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:24:02] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:24:43] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:24:43] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:25:24] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 18.
+[2026-04-28 14:25:24] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:25:33] [DEBUG   ] discord.gateway: Received WSMessage(type=<WSMsgType.CLOSED: 257>, data=None, extra=None)
+[2026-04-28 14:25:33] [DEBUG   ] discord.gateway: Websocket closed with 1006, attempting a reconnect.
+[2026-04-28 14:25:33] [DEBUG   ] discord.client: Got a request to RESUME the websocket.
+[2026-04-28 14:25:33] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:25:33] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:25:33] [ERROR   ] discord.client: Attempting a reconnect in 71.86s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:25:55] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":9807270,"timestamp":"2026-04-28T11:25:52.872351+00:00","type":"rich","description":"\ud83d\udd34 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"7149437308847747502","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:25:55] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'color': 9807270, 'timestamp': '2026-04-28T11:25:52.872351+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:25:56.226000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498646445979336766', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '7149437308847747502'}
+[2026-04-28 14:26:45] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:26:45] [ERROR   ] discord.client: Attempting a reconnect in 70.80s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-04-28 14:26:54] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":9807270,"timestamp":"2026-04-28T11:26:38.963766+00:00","type":"rich","description":"\ud83d\udd34 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"9177435063944767298","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:26:54] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'color': 9807270, 'timestamp': '2026-04-28T11:26:38.963766+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:26:54.883000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498646692004761632', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '9177435063944767298'}
+[2026-04-28 14:27:40] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":3066993,"timestamp":"2026-04-28T11:27:39.913577+00:00","type":"rich","description":"\ud83d\udfe2 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"10995126836480565812","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:27:40] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🟢 **Thomas** started their activity monitor from `DESKTOP-ELR06CR`.', 'color': 3066993, 'timestamp': '2026-04-28T11:27:39.913577+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:27:41.042000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498646885609635981', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '10995126836480565812'}
+[2026-04-28 14:27:57] [DEBUG   ] discord.gateway: Created websocket connected to wss://gateway-us-east1-d.discord.gg
+[2026-04-28 14:27:57] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-arm-us-east1-d-93d9",{"micros":0.0}]']}}
+[2026-04-28 14:27:57] [DEBUG   ] discord.gateway: Shard ID None has sent the RESUME payload.
+[2026-04-28 14:27:57] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:27:57] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 9, 'd': False}
+[2026-04-28 14:27:57] [INFO    ] discord.gateway: Shard ID None session has been invalidated.
+[2026-04-28 14:27:57] [DEBUG   ] discord.client: Got a request to IDENTIFY the websocket.
+[2026-04-28 14:27:57] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:27:58] [DEBUG   ] discord.gateway: Created websocket connected to wss://gateway-us-east1-d.discord.gg
+[2026-04-28 14:27:58] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-arm-us-east1-d-nbnm",{"micros":0.0}]']}}
+[2026-04-28 14:28:03] [DEBUG   ] discord.gateway: Shard ID None has sent the IDENTIFY payload.
+[2026-04-28 14:28:03] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:28:04] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'READY', 's': 1, 'op': 0, 'd': {'v': 10, 'user_settings': {}, 'user': {'verified': True, 'username': 'herbsbot', 'primary_guild': None, 'mfa_enabled': False, 'id': '1485595275258101900', 'global_name': None, 'flags': 0, 'email': None, 'discriminator': '9471', 'clan': None, 'bot': True, 'avatar': None}, 'session_type': 'normal', 'session_id': '356fa3e43318c3dbe474a70ab3084099', 'resume_gateway_url': 'wss://gateway-us-east1-d.discord.gg', 'relationships': [], 'private_channels': [], 'presences': [], 'guilds': [{'unavailable': True, 'id': '1485910845333442633'}], 'guild_join_requests': [], 'geo_ordered_rtc_regions': ['tel-aviv', 'bucharest', 'saudi-arabia', 'warsaw', 'milan'], 'game_relationships': [], 'auth': {}, 'application': {'id': '1485595275258101900', 'flags_new': '557056', 'flags': 557056}, '_trace': ['["gateway-prd-arm-us-east1-d-nbnm",{"micros":167447,"calls":["id_created",{"micros":983,"calls":[]},"session_lookup_time",{"micros":1145,"calls":[]},"session_lookup_finished",{"micros":11,"calls":[]},"sessions-prd-gcp-us-east1-d-175",{"micros":163975,"calls":["start_session",{"micros":100969,"calls":["prd-rpc-6f8dcb998b-n2cg6",{"micros":31184,"calls":["get_user",{"micros":5908},"get_guilds",{"micros":5235},"send_scheduled_deletion_message",{"micros":16},"guild_join_requests",{"micros":4},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":1706},"apex_experiments",{"micros":60360},"sessions_experiments",{"micros":6},"played_application_ids",{"micros":3},"linked_users",{"micros":3},"ad_personalization_toggles_disabled",{"micros":3},"regional_feature_config",{"micros":2}]}]},"starting_guild_connect",{"micros":37,"calls":[]},"presence_started",{"micros":343,"calls":[]},"guilds_started",{"micros":72,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":62488,"calls":[]},"connect_finished",{"micros":62504,"calls":[]},"build_ready",{"micros":43,"calls":[]},"clean_ready",{"micros":3,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}]']}}
+[2026-04-28 14:28:04] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:28:04] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 356fa3e43318c3dbe474a70ab3084099).
+[2026-04-28 14:28:04] [DEBUG   ] discord.client: Dispatching event connect
+[2026-04-28 14:28:04] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_CREATE', 's': 2, 'op': 0, 'd': {'preferred_locale': 'en-US', 'features': [], 'verification_role_id': None, 'afk_timeout': 300, 'members': [{'user': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'display_name': None, 'discriminator': '9471', 'collectibles': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}], 'max_stage_video_channel_users': 50, 'splash': None, 'activity_instances': [], 'public_updates_channel_id': None, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'profile': None, 'premium_subscription_count': 0, 'application_id': None, 'premium_progress_bar_enabled_user_updated_at': None, 'explicit_content_filter': 0, 'nsfw': False, 'lazy': True, 'guild_scheduled_events': [], 'application_command_counts': {}, 'premium_progress_bar_enabled': False, 'verification_level': 0, 'id': '1485910845333442633', 'max_members': 25000000, 'name': 'Test server', 'rules_channel_id': None, 'vanity_url_code': None, 'roles': [{'version': 1774339152572, 'unicode_emoji': None, 'tags': {}, 'position': 0, 'permissions': '2248473465835073', 'name': '@everyone', 'mentionable': False, 'managed': False, 'id': '1485910845333442633', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 0}, 'color': 0}, {'version': 1776932671740, 'unicode_emoji': None, 'tags': {'bot_id': '1485595275258101900'}, 'position': 3, 'permissions': '8', 'name': 'herbsbot', 'mentionable': False, 'managed': True, 'id': '1485911686551572525', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 0}, 'color': 0}, {'version': 1776932671735, 'unicode_emoji': None, 'tags': {}, 'position': 2, 'permissions': '0', 'name': 'Admin', 'mentionable': False, 'managed': False, 'id': '1490641426005102632', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 15158332}, 'color': 15158332}, {'version': 1776932671985, 'unicode_emoji': None, 'tags': {}, 'position': 1, 'permissions': '0', 'name': 'Tech Team', 'mentionable': False, 'managed': False, 'id': '1496788779187437698', 'icon': None, 'hoist': False, 'flags': 0, 'colors': {'tertiary_color': None, 'secondary_color': None, 'primary_color': 3066993}, 'color': 3066993}], 'game_application_ids': None, 'threads': [], 'safety_alerts_channel_id': None, 'default_message_notifications': 0, 'region': 'deprecated', 'latest_onboarding_question_id': None, 'premium_tier': 0, 'description': None, 'embedded_activities': [], 'afk_channel_id': None, 'unavailable': False, 'discovery_splash': None, 'hub_type': None, 'inventory_settings': None, 'experiments': {'evaluation_id': None, 'assignments': []}, 'system_channel_id': '1485910846008983793', 'voice_states': [], 'large': False, 'channels': [{'version': 1774339152580, 'type': 4, 'position': 0, 'permission_overwrites': [], 'name': 'Text Channels', 'id': '1485910846008983791', 'flags': 0}, {'version': 1774339152584, 'type': 4, 'position': 0, 'permission_overwrites': [], 'name': 'Voice Channels', 'id': '1485910846008983792', 'flags': 0}, {'version': 1774339152599, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'general', 'last_message_id': '1497208110857850880', 'id': '1485910846008983793', 'icon_emoji': {'name': '👋', 'id': None}, 'flags': 0}, {'version': 1774339152615, 'user_limit': 0, 'type': 2, 'rtc_region': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '1485910846008983792', 'name': 'General', 'last_message_id': None, 'id': '1485910846008983794', 'icon_emoji': {'name': '🎙', 'id': None}, 'flags': 0, 'bitrate': 64000}, {'version': 1776243551319, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 1, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'streaming-logs', 'last_message_id': '1498646885609635981', 'id': '1493898473261764668', 'flags': 0}, {'version': 1776246278895, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 2, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'check-in-responses', 'last_message_id': '1493910104079204383', 'id': '1493909913544691712', 'flags': 0}, {'version': 1776930648890, 'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 3, 'permission_overwrites': [], 'parent_id': '1485910846008983791', 'name': 'work-reminders', 'last_message_id': None, 'id': '1496780369322709012', 'flags': 0}], 'system_channel_flags': 0, 'soundboard_sounds': [], 'stage_instances': [], 'nsfw_level': 0, 'presences': [], 'moderator_reporting': None, 'incidents_data': None, 'emojis': [], 'owner_id': '1476250480408531137', 'icon': None, 'premium_features': None, 'version': 1774948308028, 'member_count': 3, 'banner': None, 'official_message_color': None, 'mfa_level': 0, 'max_video_channel_users': 25, 'owner_configured_content_level': 0, 'home_header': None, 'stickers': []}}
+[2026-04-28 14:28:04] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:28:09] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_MEMBERS_CHUNK', 's': 3, 'op': 0, 'd': {'nonce': '4f24fe55aeed2e5b86721c4f71ab60d3', 'members': [{'user': {'username': 'serivos', 'public_flags': 0, 'primary_guild': {'tag': 'NGA', 'identity_guild_id': '868243623962083348', 'identity_enabled': True, 'badge': '21129b437afdc5d4c56b399d9d86e25d'}, 'id': '345710426077528066', 'global_name': 'Oligarca Narigón', 'display_name_styles': None, 'display_name': 'Oligarca Narigón', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'f58642de31e120de375694a1b8f2c636'}, 'roles': ['1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-04-15T10:53:10.748000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, {'user': {'username': 'mohammadsalmansunakal', 'public_flags': 0, 'primary_guild': None, 'id': '1476250480408531137', 'global_name': 'salmanDN', 'display_name_styles': None, 'display_name': 'salmanDN', 'discriminator': '0', 'collectibles': None, 'bot': False, 'avatar_decoration_data': None, 'avatar': 'ce11d724f9db55950eac6bde2e3b1e57'}, 'roles': ['1490641426005102632', '1496788779187437698'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T07:59:12.515000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, {'user': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'display_name': None, 'discriminator': '9471', 'collectibles': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}], 'guild_id': '1485910845333442633', 'chunk_index': 0, 'chunk_count': 1}}
+[2026-04-28 14:28:09] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:28:09] [DEBUG   ] discord.state: Processed a chunk for 3 members in guild ID 1485910845333442633.
+[2026-04-28 14:28:09] [DEBUG   ] discord.client: Dispatching event guild_available
+[2026-04-28 14:28:09] [DEBUG   ] discord.client: Dispatching event ready
+[2026-04-28 14:28:09] [DEBUG   ] discord.client: on_voice_state_update has successfully been registered as an event
+[2026-04-28 14:28:09] [ERROR   ] discord.client: Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 508, in _run_event
+    await coro(*args, **kwargs)
+  File "E:\Herbs_are_my_world\DiscordBot\bot.py", line 1377, in on_ready
+    streaming_monitor.setup(bot, TIMEZONE)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\streaming_monitor.py", line 618, in setup
+    @bot.command(name="streaming")
+     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\ext\commands\core.py", line 1553, in decorator
+    self.add_command(result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\ext\commands\bot.py", line 264, in add_command
+    super().add_command(command)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\ext\commands\core.py", line 1391, in add_command
+    raise CommandRegistrationError(command.name)
+discord.ext.commands.errors.CommandRegistrationError: The command streaming is already an existing command or alias.
+[2026-04-28 14:28:40] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 3.
+[2026-04-28 14:28:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:28:40] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 4, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:28:41.063000+00:00', 'pinned': False, 'nonce': '4606188648436356046', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498647137355956274', 'flags': 0, 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'timestamp': '2026-04-28T11:28:39.923809+00:00', 'id': '1498647137355956275', 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'fields': [{'value': '1.0 minutes', 'name': '⏱️ Idle for', 'inline': True}, {'value': 'No', 'name': '🖥️ Streaming', 'inline': True}, {'value': 'No', 'name': '🔊 In Voice', 'inline': True}], 'content_scan_version': 0, 'color': 15965202}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:28:40] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:28:40] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:28:40] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor \u2022 Inactivity Detection"},"fields":[{"inline":true,"name":"\u23f1\ufe0f Idle for","value":"1.0 minutes"},{"inline":true,"name":"\ud83d\udda5\ufe0f Streaming","value":"No"},{"inline":true,"name":"\ud83d\udd0a In Voice","value":"No"}],"flags":0,"color":15965202,"timestamp":"2026-04-28T11:28:39.923809+00:00","type":"rich","title":"\ud83d\ude34 Thomas appears to be idle"}],"content":null,"components":[],"nonce":"4606188648436356046","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:28:40] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'title': '😴 Thomas appears to be idle', 'color': 15965202, 'timestamp': '2026-04-28T11:28:39.923809+00:00', 'fields': [{'name': '⏱️ Idle for', 'value': '1.0 minutes', 'inline': True}, {'name': '🖥️ Streaming', 'value': 'No', 'inline': True}, {'name': '🔊 In Voice', 'value': 'No', 'inline': True}], 'footer': {'text': 'VD Monitor • Inactivity Detection'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:28:41.063000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498647137355956274', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '4606188648436356046'}
+[2026-04-28 14:28:57] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 5, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:28:58.318000+00:00', 'pinned': False, 'nonce': '14120474184926511194', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498647209728540692', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:28:56.942997+00:00', 'id': '1498647209728540693', 'footer': {'text': 'VD Monitor'}, 'description': '✅ **Thomas** is active again after being idle.', 'content_scan_version': 0, 'color': 3066993}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:28:57] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:28:57] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:28:58] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":3066993,"timestamp":"2026-04-28T11:28:56.942997+00:00","type":"rich","description":"\u2705 **Thomas** is active again after being idle."}],"content":null,"components":[],"nonce":"14120474184926511194","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:28:58] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '✅ **Thomas** is active again after being idle.', 'color': 3066993, 'timestamp': '2026-04-28T11:28:56.942997+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:28:58.318000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498647209728540692', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '14120474184926511194'}
+[2026-04-28 14:29:21] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 5.
+[2026-04-28 14:29:21] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+[2026-04-28 14:29:25] [DEBUG   ] discord.gateway: For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 6, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2026-04-28T11:29:25.633000+00:00', 'pinned': False, 'nonce': '4898711286584787832', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['1485911686551572525'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2026-03-24T08:02:33.094000+00:00', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'banner': None, 'avatar': None}, 'id': '1498647324295958548', 'flags': 0, 'embeds': [{'type': 'rich', 'timestamp': '2026-04-28T11:29:23.879634+00:00', 'id': '1498647324295958549', 'footer': {'text': 'VD Monitor'}, 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'content_scan_version': 0, 'color': 9807270}], 'edited_timestamp': None, 'content': '', 'components': [], 'channel_type': 0, 'channel_id': '1493898473261764668', 'author': {'username': 'herbsbot', 'public_flags': 0, 'primary_guild': None, 'id': '1485595275258101900', 'global_name': None, 'display_name_styles': None, 'discriminator': '9471', 'collectibles': None, 'clan': None, 'bot': True, 'avatar_decoration_data': None, 'avatar': None}, 'attachments': [], 'guild_id': '1485910845333442633'}}
+[2026-04-28 14:29:25] [DEBUG   ] discord.client: Dispatching event socket_event_type
+[2026-04-28 14:29:25] [DEBUG   ] discord.client: Dispatching event message
+[2026-04-28 14:29:25] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages with {"embeds":[{"footer":{"text":"VD Monitor"},"flags":0,"color":9807270,"timestamp":"2026-04-28T11:29:23.879634+00:00","type":"rich","description":"\ud83d\udd34 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`."}],"content":null,"components":[],"nonce":"4898711286584787832","enforce_nonce":true,"tts":false} has returned 200
+[2026-04-28 14:29:25] [DEBUG   ] discord.http: POST https://discord.com/api/v10/channels/1493898473261764668/messages has received {'type': 0, 'content': '', 'mentions': [], 'mention_roles': [], 'attachments': [], 'embeds': [{'type': 'rich', 'description': '🔴 **Thomas** stopped their activity monitor from `DESKTOP-ELR06CR`.', 'color': 9807270, 'timestamp': '2026-04-28T11:29:23.879634+00:00', 'footer': {'text': 'VD Monitor'}, 'content_scan_version': 0}], 'timestamp': '2026-04-28T11:29:25.633000+00:00', 'edited_timestamp': None, 'flags': 0, 'components': [], 'id': '1498647324295958548', 'channel_id': '1493898473261764668', 'author': {'id': '1485595275258101900', 'username': 'herbsbot', 'avatar': None, 'discriminator': '9471', 'public_flags': 0, 'flags': 0, 'bot': True, 'banner': None, 'accent_color': None, 'global_name': None, 'avatar_decoration_data': None, 'collectibles': None, 'display_name_styles': None, 'banner_color': None, 'clan': None, 'primary_guild': None}, 'pinned': False, 'mention_everyone': False, 'tts': False, 'nonce': '4898711286584787832'}
+[2026-04-28 14:30:02] [DEBUG   ] discord.gateway: Keeping shard ID None websocket alive with sequence 6.
+[2026-04-28 14:32:41] [DEBUG   ] discord.gateway: Timed out receiving packet. Attempting a reconnect.
+[2026-04-28 14:32:44] [DEBUG   ] discord.client: Got a request to RESUME the websocket.
+[2026-04-28 14:32:44] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:32:44] [DEBUG   ] discord.client: Dispatching event disconnect
+[2026-04-28 14:32:44] [ERROR   ] discord.client: Attempting a reconnect in 112.70s
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1574, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1190, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1221, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\discord\http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 1087, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 788, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\client.py", line 742, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1251, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Herbs_are_my_world\DiscordBot\.venv\Lib\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
