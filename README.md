@@ -12,7 +12,7 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 
 ### 📋 Task Management
 - Create, update, and delete tasks with `!task` commands
-- Get hourly work reminders for active tasks
+- Get work reminders at 9:00, 12:00, and 14:00 during business days
 - Track tasks with IDs, priorities, and descriptions
 - Persistent task storage with JSON serialization
 
@@ -39,21 +39,16 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 - Role-based reminder targeting
 
 ### 🖥️ VDMonitor (Desktop Monitoring)
-- Monitor desktop application usage
-- Track active window changes
-- Send notifications to Discord when specific apps are used
-- Configurable monitoring rules via `vdmonitor_config.env`
+- Monitor desktop application usage and keyboard/mouse activity
+- Track idle time and send notifications to Discord
+- GUI-based application with consent screen and monitoring controls
+- Configurable idle thresholds and server URLs
+- Built as standalone executable for easy deployment
 
 ### 🤖 Ollama AI Integration
 - Generate workflow suggestions and optimizations
 - AI-powered text generation for workflow descriptions
 - Customizable LLM model selection
-
-### 🖥️ VDMonitor (Desktop Monitoring)
-- Monitor desktop application usage
-- Track active window changes
-- Send notifications to Discord when specific apps are used
-- Configurable monitoring rules via `vdmonitor_config.env`
 
 ## Project Structure
 
@@ -63,6 +58,7 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 ├── streaming_monitor.py     # Standalone streaming monitor module
 ├── workflow_manager.py      # Standalone workflow manager and Miro integration
 ├── vdmonitor_listener.py    # VDMonitor Discord listener
+├── test_suite.py            # Comprehensive automated test suite
 ├── secret.py                # Secret management utilities
 ├── requirements.txt         # Python dependencies
 ├── Dockerfile               # Docker container setup
@@ -71,9 +67,11 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
 ├── README.md                # This file
 ├── dimitrisPC.env           # Local environment configuration
 ├── VDMonitor/               # Desktop monitoring application
-│   ├── vdmonitor.py         # Main VDMonitor script
+│   ├── vdmonitor.py         # Main VDMonitor GUI script
 │   ├── vdmonitor_config.env # VDMonitor configuration
-│   └── build/               # Built executable
+│   ├── vdmonitor.log        # VDMonitor log file
+│   ├── dist/                # Built executable and logs
+│   └── build/               # PyInstaller build artifacts
 └── data/
     ├── checkins.csv         # Check-in response logs
     ├── miro_map.json       # Miro board to Discord mapping
@@ -83,7 +81,28 @@ A feature-rich Discord bot with streaming monitoring, task management, workflow 
     └── workflows.json     # Workflow definitions
 ```
 
-## Setup & Installation
+## Testing
+
+The project includes a comprehensive automated test suite in `test_suite.py` covering:
+
+- VDMonitor listener HTTP handlers and Discord alerts
+- Streaming monitor voice state updates and commands
+- Workflow manager AI generation and Miro integration
+- Bot helper functions and edge cases
+
+### Run Tests
+```bash
+pip install pytest pytest-asyncio aiohttp aioresponses
+pytest test_suite.py -v
+```
+
+### Test Coverage
+- Unit tests for all major functions
+- Integration tests for Discord interactions
+- HTTP endpoint testing for VDMonitor listener
+- Voice state change handling
+- Workflow creation and editing
+- Error handling and edge cases
 
 ### Prerequisites
 - Python 3.11 or higher
@@ -272,6 +291,7 @@ The Docker setup includes:
 - Volume mounts for persistent data
 - Environment variable support
 - Unbuffered output for real-time logging
+- Port 8765 exposed for VDMonitor HTTP listener
 
 ## Troubleshooting
 
@@ -364,9 +384,11 @@ Discord listener module for:
 
 ### VDMonitor/
 Desktop monitoring application:
-- `vdmonitor.py` - Main monitoring script
-- `vdmonitor_config.env` - Configuration file
-- `build/VDMonitor/` - Built executable for Windows
+- `vdmonitor.py` - Main monitoring GUI script with consent and control screens
+- `vdmonitor_config.env` - Configuration file (updated automatically)
+- `vdmonitor.log` - Activity log file
+- `dist/VDMonitor.exe` - Built executable for Windows deployment
+- `build/` - PyInstaller build artifacts
 
 ## Logging
 

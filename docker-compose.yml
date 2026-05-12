@@ -12,6 +12,8 @@ services:
     volumes:
       # Only mount the data directory, not individual files
       - ./data:/app/data
+    ports:
+      - "8765:8765"
     networks:
       - bot-network
     healthcheck:

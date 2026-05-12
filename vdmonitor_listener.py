@@ -128,8 +128,11 @@ async def _post_idle_alert(username: str, idle_minutes: float):
         )
 
     embed.set_footer(text="VD Monitor • Inactivity Detection")
-    await channel.send(embed=embed)
-    log.info(f"✅ Posted idle alert for {username} ({idle_minutes:.1f} min idle)")
+    try:
+        await channel.send(embed=embed)
+        log.info(f"✅ Posted idle alert for {username} ({idle_minutes:.1f} min idle)")
+    except Exception as e:
+        log.error(f"❌ Failed to post idle alert for {username}: {e}")
 
 
 async def _post_status_change(username: str, status: str, machine: str = ""):
@@ -152,7 +155,10 @@ async def _post_status_change(username: str, status: str, machine: str = ""):
     text, color = messages[status]
     embed = discord.Embed(description=text, color=color, timestamp=datetime.now().astimezone())
     embed.set_footer(text="VD Monitor")
-    await channel.send(embed=embed)
+    try:
+        await channel.send(embed=embed)
+    except Exception as e:
+        log.error(f"❌ Failed to post status change for {username}: {e}")
 
 
 # ==========================================================

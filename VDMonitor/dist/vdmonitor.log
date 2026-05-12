@@ -1,0 +1,17 @@
+2026-05-05 12:12:15,687 [INFO] 🌿 VD Monitor starting
+2026-05-05 12:12:15,688 [INFO]    User       : $allu Bhai
+2026-05-05 12:12:15,688 [INFO]    Server URL : http://127.0.0.1:8765/activity
+2026-05-05 12:12:15,688 [INFO]    Idle after : 10 minutes
+2026-05-05 12:12:15,688 [INFO]    Log file   : E:\Herbs_are_my_world\DiscordBot\VDMonitor\dist\vdmonitor.log
+2026-05-05 12:12:31,848 [INFO] ✅ Sent status 'started' to bot server.
+2026-05-05 12:12:31,870 [INFO] ✅ Monitoring started.
+2026-05-05 12:12:56,542 [INFO] ✅ Sent status 'stopped' to bot server.
+2026-05-05 12:12:56,542 [INFO] 🛑 Monitoring stopped.
+2026-05-05 12:13:05,620 [INFO] ✅ Sent status 'started' to bot server.
+2026-05-05 12:13:05,640 [INFO] ✅ Monitoring started.
+2026-05-05 12:13:12,869 [INFO] Window closed while monitoring — sending stopped signal.
+2026-05-05 12:13:12,875 [INFO] ✅ Sent status 'stopped' to bot server.
+2026-05-05 12:13:12,876 [INFO] 🛑 Monitoring stopped.
+2026-05-05 12:13:12,907 [INFO] 🛑 VD Monitor exited.
+2026-05-05 13:22:12,209 [INFO] Username prompt was closed by user. Exiting.
+2026-05-05 13:22:12,320 [INFO] No username provided. Exiting.

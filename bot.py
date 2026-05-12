@@ -1741,13 +1741,18 @@ async def _send_eod_reminders():
 # ==========================================================
 
 
-@tasks.loop(minutes=60)
+WORK_REMINDER_HOURS = [9, 12, 14]  # 9:00, 12:00, 14:00
+
+
+@tasks.loop(minutes=1)
 async def workday_reminder():
-    """Post a work reminder in the notify channel every hour during business hours."""
+    """Post a work reminder at specific hours during business days."""
     if not notify_channel_id:
         return
+
     now = datetime.now(TIMEZONE)
-    if now.weekday() < 5 and 9 <= now.hour <= 17:
+
+    if now.weekday() < 5 and now.hour in WORK_REMINDER_HOURS and now.minute == 0:
         channel = bot.get_channel(notify_channel_id)
         if channel:
             await channel.send(
