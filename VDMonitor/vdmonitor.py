@@ -47,7 +47,8 @@ else:
 #  Configuration (Integrated)
 # ==========================================================
 
-BOT_SERVER_URL = "http://192.168.10.20:8765/activity"
+# BOT_SERVER_URL = "http://192.168.10.20:8765/activity"
+BOT_SERVER_URL = "https://vdmonitorherbsaremyworld.duckdns.org/activity"
 SECRET_TOKEN = "156229bdfadf2e9563f50cfc6a568308be9256e4d441f07a5007ca72dd991d15"
 DISCORD_USERNAME = ""  # Will be prompted if empty
 IDLE_THRESHOLD_MINUTES = 10
@@ -314,13 +315,30 @@ def prompt_username() -> str | None:
 # ==========================================================
 
 def create_tray_icon():
-    """Create a simple green-circle system tray icon."""
+    """Create a system tray icon from the company logo."""
     if not TRAY_AVAILABLE:
         return None
 
-    img  = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-    draw.ellipse([8, 8, 56, 56], fill=(46, 204, 113, 255))
+    # ── Option A: Load from embedded ico file ─────────────────
+    try:
+        if getattr(sys, "frozen", False):
+            # Running as a PyInstaller .exe
+            # In --onefile mode, bundled files are extracted to sys._MEIPASS
+            base_path = Path(getattr(sys, "_MEIPASS", Path(sys.executable).parent))
+        else:
+            # Running as normal .py script
+            base_path = Path(__file__).parent
+
+        icon_path = base_path / "vdmonitor.ico"
+        img = Image.open(icon_path).convert("RGBA")
+
+    except Exception as e:
+        log.warning(f"Could not load tray icon from vdmonitor.ico: {e}")
+
+        # ── Option B: Fallback to green circle if icon not found ──
+        img  = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+        draw = ImageDraw.Draw(img)
+        draw.ellipse([8, 8, 56, 56], fill=(46, 204, 113, 255))
 
     def on_quit(icon, item):
         global monitor_running, stopped_sent

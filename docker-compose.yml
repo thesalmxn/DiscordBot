@@ -16,6 +16,7 @@ services:
       - "8765:8765"
     networks:
       - bot-network
+      - proxy-network
     healthcheck:
       test: ["CMD-SHELL", "tr '\\0' ' ' < /proc/1/cmdline | grep -q 'python .*bot.py'"]
       interval: 60s
@@ -31,3 +32,6 @@ services:
 networks:
   bot-network:
     driver: bridge
+  proxy-network:
+    external: true
+    name: n8n-compose_default

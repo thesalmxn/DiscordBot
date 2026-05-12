@@ -1,4 +1,4 @@
-('E:\\Herbs_are_my_world\\DiscordBot\\VDMonitor\\build\\VDMonitor\\PYZ-00.pyz',
+('E:\\Herbs_are_my_world\\DiscordBot\\VDMonitor\\build\\vdmonitor\\PYZ-00.pyz',
  [('PIL',
    'E:\\Herbs_are_my_world\\DiscordBot\\.venv\\Lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),
