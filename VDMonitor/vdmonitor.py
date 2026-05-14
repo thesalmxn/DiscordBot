@@ -49,9 +49,11 @@ else:
 
 # BOT_SERVER_URL = "http://192.168.10.20:8765/activity"
 BOT_SERVER_URL = "https://vdmonitorherbsaremyworld.duckdns.org/activity"
+# BOT_SERVER_URL = "http://localhost:8765/activity"
 SECRET_TOKEN = "156229bdfadf2e9563f50cfc6a568308be9256e4d441f07a5007ca72dd991d15"
+# SECRET_TOKEN = "f7f26ad83e51f6fd300c56703587e9e2fd751156e8b6dd3d371894644ad3c1ea"
 DISCORD_USERNAME = ""  # Will be prompted if empty
-IDLE_THRESHOLD_MINUTES = 10
+IDLE_THRESHOLD_MINUTES = 3
 CHECK_INTERVAL_SECONDS = 30
 HEARTBEAT_INTERVAL_MINUTES = 2
 

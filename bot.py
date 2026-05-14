@@ -16,6 +16,9 @@ import workflow_manager
 import streaming_monitor
 import vdmonitor_listener
 
+# Disable all stdout buffering
+print = lambda *a, **kw: __builtins__.print(*a, flush=True, **kw)
+
 # ==========================================================
 #  Setup
 # ==========================================================
@@ -835,12 +838,16 @@ async def ask_ollama(prompt: str, system: str = "") -> str:
             async with session.post(
                 OLLAMA_URL,
                 json={"model": OLLAMA_MODEL, "prompt": full_prompt, "stream": False},
-                timeout=aiohttp.ClientTimeout(total=60),
+                timeout=aiohttp.ClientTimeout(total=180),
             ) as resp:
+                if resp.status != 200:
+                    text = await resp.text()
+                    print(f"[OLLAMA] HTTP Error {resp.status}: {text}")
+                    return None
                 data = await resp.json()
                 return data.get("response", "").strip()
     except Exception as e:
-        print(f"[OLLAMA] Error: {e}")
+        print(f"[OLLAMA] Error: {repr(e)}")
         return None
 
 

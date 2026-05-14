@@ -192,18 +192,21 @@ async def handle_activity(request: web.Request) -> web.Response:
     now = datetime.now().astimezone()
     if username not in user_states:
         user_states[username] = {
-            "status":     "unknown",
-            "last_alert": None,
-            "idle_since": None,
-            "machine":    machine,
-            "last_seen":  now,
+            "status":          "unknown",
+            "last_alert":      None,
+            "idle_since":      None,
+            "machine":         machine,
+            "last_seen":       now,
+            "started_at":      None,       # When the monitor was started
+            "total_idle_mins": 0.0,        # Accumulated idle minutes today
+            "idle_start_time": None,       # When current idle period began
         }
 
     state             = user_states[username]
     state["last_seen"] = now
     state["machine"]   = machine
 
-    # ── Route by status ───────────────────────────────────────────────────
+        # ── Route by status ───────────────────────────────────────────────────
 
     if status == "idle":
         was_idle       = state["status"] == "idle"
@@ -211,6 +214,10 @@ async def handle_activity(request: web.Request) -> web.Response:
 
         if not state["idle_since"]:
             state["idle_since"] = now
+
+        # Track when this idle period started
+        if not state["idle_start_time"]:
+            state["idle_start_time"] = now
 
         should_alert = False
         if idle_minutes >= ALERT_THRESHOLD_MINUTES:
@@ -228,6 +235,13 @@ async def handle_activity(request: web.Request) -> web.Response:
     elif status == "active":
         prev           = state["status"]
         state["status"] = "active"
+
+        # ── Accumulate idle time from the period that just ended ──────
+        if state["idle_start_time"]:
+            idle_period = (now - state["idle_start_time"]).total_seconds() / 60
+            state["total_idle_mins"] += idle_period
+            state["idle_start_time"] = None
+
         state["idle_since"] = None
         state["last_alert"] = None
         if prev == "idle":
@@ -236,21 +250,135 @@ async def handle_activity(request: web.Request) -> web.Response:
     elif status == "heartbeat":
         state["status"] = "active"
 
-    elif status in ("started", "stopped"):
-        state["status"] = status
+    elif status == "started":
+        state["status"]         = status
+        state["started_at"]     = now
+        state["total_idle_mins"] = 0.0
+        state["idle_start_time"] = None
         asyncio.create_task(_post_status_change(username, status, machine))
+
+    elif status == "stopped":
+        # ── If they were idle when they stopped, count that too ────────
+        if state["idle_start_time"]:
+            idle_period = (now - state["idle_start_time"]).total_seconds() / 60
+            state["total_idle_mins"] += idle_period
+            state["idle_start_time"] = None
+
+        state["status"] = status
+        asyncio.create_task(_post_stopped_summary(username, machine, state, now))
 
     return web.Response(status=200, text="OK")
 
+async def _post_stopped_summary(username: str, machine: str, state: dict, now: datetime):
+    """Post a detailed summary when a user stops their monitor."""
+    channel = _get_log_channel()
+    if not channel:
+        return
+
+    started_at     = state.get("started_at")
+    total_idle     = state.get("total_idle_mins", 0.0)
+    machine_text   = f" from `{machine}`" if machine else ""
+
+    # ── Calculate total session time ──────────────────────────────────
+    if started_at:
+        total_session_mins = (now - started_at).total_seconds() / 60
+    else:
+        total_session_mins = 0.0
+
+    total_active_mins = max(0, total_session_mins - total_idle)
+
+    # ── Format readable durations ─────────────────────────────────────
+    def fmt(minutes: float) -> str:
+        minutes = round(minutes, 1)
+        if minutes < 60:
+            return f"{minutes} min"
+        hours = minutes / 60
+        return f"{round(hours, 2)} hrs ({round(minutes, 1)} min)"
+
+    # ── Calculate active percentage ───────────────────────────────────
+    if total_session_mins > 0:
+        active_pct = (total_active_mins / total_session_mins) * 100
+    else:
+        active_pct = 0
+
+    # ── Build progress bar ────────────────────────────────────────────
+    filled = max(0, min(10, round(active_pct / 10)))
+    bar = "🟩" * filled + "🟥" * (10 - filled)
+
+    # ── Color based on active percentage ──────────────────────────────
+    if active_pct >= 80:
+        color = 0x2ECC71   # Green — great
+    elif active_pct >= 60:
+        color = 0xF39C12   # Orange — okay
+    else:
+        color = 0xE74C3C   # Red — concerning
+
+    # ── Build the embed ───────────────────────────────────────────────
+    embed = discord.Embed(
+        title=f"🔴 {username} stopped their activity monitor{machine_text}",
+        color=color,
+        timestamp=now,
+    )
+
+    # Session time
+    if started_at:
+        embed.add_field(
+            name="🕐 Session",
+            value=f"{started_at.strftime('%H:%M:%S')} → {now.strftime('%H:%M:%S')}",
+            inline=True,
+        )
+    embed.add_field(
+        name="⏱️ Total time",
+        value=fmt(total_session_mins),
+        inline=True,
+    )
+    embed.add_field(name="\u200b", value="\u200b", inline=True)  # spacer
+
+    # Active vs Idle breakdown
+    embed.add_field(
+        name="✅ Active time",
+        value=fmt(total_active_mins),
+        inline=True,
+    )
+    embed.add_field(
+        name="😴 Idle time",
+        value=fmt(total_idle),
+        inline=True,
+    )
+    embed.add_field(
+        name="📊 Active %",
+        value=f"{round(active_pct, 1)}%",
+        inline=True,
+    )
+
+    # Visual bar
+    embed.add_field(
+        name="Activity breakdown",
+        value=f"{bar}  {round(active_pct, 1)}% active",
+        inline=False,
+    )
+
+    embed.set_footer(text="VD Monitor • Session Summary")
+
+    try:
+        await channel.send(embed=embed)
+        log.info(
+            f"✅ Posted session summary for {username}: "
+            f"{fmt(total_active_mins)} active / {fmt(total_idle)} idle"
+        )
+    except Exception as e:
+        log.error(f"❌ Failed to post session summary for {username}: {e}")
 
 async def handle_status(request: web.Request) -> web.Response:
     """GET /status — returns JSON of all monitored users."""
     result = {
         username: {
-            "status":     s["status"],
-            "machine":    s["machine"],
-            "last_seen":  s["last_seen"].isoformat()  if s["last_seen"]  else None,
-            "idle_since": s["idle_since"].isoformat() if s["idle_since"] else None,
+            "status":          s["status"],
+            "machine":         s["machine"],
+            "last_seen":       s["last_seen"].isoformat()    if s["last_seen"]    else None,
+            "idle_since":      s["idle_since"].isoformat()   if s["idle_since"]   else None,
+            "started_at":      s["started_at"].isoformat()   if s.get("started_at")   else None,
+            "total_idle_mins": round(s.get("total_idle_mins", 0), 1),
         }
         for username, s in user_states.items()
     }
